@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>What is Today?</h2>
+    <div id='output'></div>
+</body>
+
+<script>
+    let today = new Date()
+    let dayOfWeek = today.getDay()
+    let msg = ''
+    switch (dayOfWeek) {
+        case 1 : msg = 'Beginning of the week' 
+                 break
+        case 2 :
+        case 3 :
+        case 4 : msg = 'Mid of the week'
+                 break
+        case 5 : msg = 'Ready for the week end'
+                 break
+        default: msg = 'Enjoy the week end'
+                 break
+    }
+    document.getElementById('output').innerText = msg
+</script>
+</html>

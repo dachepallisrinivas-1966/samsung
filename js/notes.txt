@@ -1,0 +1,81 @@
+D.Srinivas
+
+Lab Setup
+---------
+1. javascript
+
+Chrome browser
+Text Editor | IDE	-	VSCode
+Node JS
+
+
+Pre-requisites:
+-----------------
+HTML
+CSS
+
+
+
+
+SoC	(Separation of Concern)
+
+HTML		:	build static web sites	
+CSS		:	to style the web page
+Javascript	:	client-side scripting language
+			it also supports server-side scripting
+
+Javascript is the primary language in MEAN and MERN Stacks
+
+MEAN stack	:	MongoDB  Express Server   Angular    	Node JS	
+MERN stack	:	MongoDB  Express Server   React		Node JS	
+
+Javascript is a case sensitive language.
+ECMAScript (European Computer Manufacturer's Association)
+	ES 6	(ECMAScript 2015)
+
+
+
+DOM	(Document Object Model)
+
+
+variable declaration is not compulsory.
+but variables can be declared in 3 ways.
++	var
++	let
++	const
+
+what is the difference between var, let and const?
++	const is to create an immutable (not modifiable) variable.
++	block means group of statements enclosed within curly braces.
++	const and let are block-scoped
++	var is function-scoped
+
+
+How do you choose between for and while?
++	for loop is used when we want to iterate set of statements for a finite number of time
++	while loop is used when we want to iterate set of statements for an indefinite number of time
++	do..while loop is used when we want to execute set of statements atleast once.
+
+creating an array:
+-------------------
+let arr = [10,20,30]
+
+for .. in	:	return indexes
+for .. of	:	return values
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

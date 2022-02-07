@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Age : <input type='text' id='age' />
+    <p></p>
+    <button onclick='show()'>Show</button>
+    <div id='output'></div>
+</body>
+<script>
+    function show() {
+        let txtAge = document.getElementById('age')
+        let divOutput = document.getElementById('output')
+        let age = txtAge.value
+        if (age < 0 || age > 100) {
+            alert('Invalid Age')
+            return
+        }
+
+        if (age < 30)
+            message = 'You are young'
+        else if (age < 50)
+            message = 'You are middle-aged'
+        else
+            message = 'You are old'
+        
+        divOutput.innerHTML = '<h3>' + message + '</h3>'
+    }
+</script>
+</html>

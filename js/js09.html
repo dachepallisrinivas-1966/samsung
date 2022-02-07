@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+        function isValidMobile(s) {
+            if (s.length != 10)
+                return false
+            
+            for(let c of s) {
+                code = c.charCodeAt(0)
+                if (code < 48 || code > 57)
+                    return false
+            }
+
+            return true
+        }
+
+        
+
+        function showMobileNumbers() {
+            let data = document.getElementById('data').value
+            let numbers = data.replace(/\n/g,',').split(',')
+            console.log(numbers)
+            let mobiles = []
+            for(let n of numbers) {
+                if (isValidMobile(n))
+                    mobiles.push(n)
+            }
+
+            let result = ''
+            for(let n of mobiles) 
+                result += '<li>' + n + '</li>'
+
+            document.getElementById('numbers').innerHTML = result
+
+        }
+    </script>
+</head>
+<body>
+    Mobile Numbers:
+    <textarea id='data' rows='5' cols='50'></textarea>
+    <p></p>
+    <button onclick='showMobileNumbers()'>Show Mobile Numbers</button>
+    <ul id='numbers'>
+
+    </ul>
+</body>
+</html>

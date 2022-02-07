@@ -1,0 +1,11 @@
+Javascript
+-----------------
+1) accept 2 numbers in 2 text boxes.
+   place a button with the title "Common Factors".
+
+   print all the common factors in an unordered list.
+
+2) accept 2 numbers in 2 text boxes.
+   also an arithmetic operator to choose from a dropdown list.
+   place a button with the title "Calculate"
+   perform the selected arithmetic operation. and print the result in a <h1> tag.

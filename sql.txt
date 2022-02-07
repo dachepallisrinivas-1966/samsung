@@ -1,0 +1,526 @@
+Oracle 11g Expression Editions:
+-------------------------------
+https://www.oracle.com/database/technologies/xe-prior-release-downloads.html
+
+
+Relational Database Management System
+--------------------------------------------
+data		: collection of raw facts found in a single entity that is worth remembering.
+data processing : adding, modifying, sorting, searching, removing data, performing some calculations, appying 
+		  business logic.
+information	: output of data processing 
+database
+database management
+database management system
+
+
+data		: transactions in a bank
+information	: last month account statement
+
+opening balance	: as on 1-jan-2022
+1-jan-2022
+31-jan-2022
+balace as on 31-jan : closing balance
+
+database: it is a place where data is stored.
+	collection of database objects like tables, views, synonyms, sequences, indexes etc.,
+
+dbms : it is a collection of tools that are used to manage the database.
+
+
+dbms models:
+---------------
+1) flat file model
+2) network model
+3) hierarchical model
+4) relational model		(RDBMS)
+
+
+what is the difference between DBMS and RDBMS?
+
+`
+RDBMS products:
+------------------
+Oracle, MySQL, MS SQL Server, Postgre SQL etc.,
+
+SQL (structured query language) commands:
+-----------------------------------------
+1) DDL		: data definition language		-	CREATE, ALTER, DROP, TRUNCATE
+2) DML		: data manipulation language		-	INSERT, UPDATE, DELETE
+3) DCL		: data control language			-	GRANT, REVOKE
+4) TCL		: transaction control language		-	COMMIT, ROLLBACK, SAVEPOINT
+5) DRL or DQL	: data retrieval language		-	SELECT
+
+
+Features of SQL:
+----------------
+1) SQL is Case InSensitive Language.
+2) Clauses must be given in different lines.
+3) Table names are plural.
+4) SQL commands must be terminated by a semi-colon(;)
+
+creating a table:
+-----------------
+CREATE   TABLE   tablename
+(columnname    datatype,
+ columnname    datatype,
+ .....
+);
+
+rules for constructing an identifier name:
+------------------------------------------
+identifier name can be the name of table, column etc.,
+
+1. max. of 30 characters
+2. must begin with an alphabet.
+3. can contain digits also. (this is not recommended)
+4. except undescores, no other special symbol is allowed.
+5. reserved words are not allowed.
+
+
+SQL Data types:
+----------------
+1) CHAR([w])    : to store fixed-length values, whose width can be max. of 2000 characters.
+                  default width 1.  (spaces are embedded)
+2) VARCHAR(w)   : to store varying-length values, whose width can be max. of  4000 characters.
+   VARCHAR2(w)
+
+   till oracle 6 version, it was called as VARCHAR.
+   later on oracle calling it as VARCHAR2.
+
+3) NUMBER(w [,s])   numeric values upto width 'w' and scale 's'.
+4) DATE         : to store date values within range Jan 1 st 4712 B.C. to 31 st Dec 9999 A.D.
+                  default date format is dd-mon-yyyy   (eg: 07-feb-2022)
+
+5) LONG         : to store large amount of data upto 2GB.
+                  only one LONG column is allowed per table.
+6) RAW          : to store binary data such as images, pictures upto 2000 bytes.
+7) LONG RAW     : LONG + RAW
+
+INSERT: 
+1) to add new rows.
+2) character and date literals must be enclosed within single quotes.
+
+
+
+
+syntax:
+-------
+INSERT   INTO  tablename  [ (col-1, col-2, ...) ]
+VALUES   (value-1, value-2, ....);
+
+SELECT:
+-------
+to retrieve data from the table.
+using SELECT, we can perform RELATIONAL ALGEBRA Operations.
+
+1. projection   :   selecting few columns
+2. restriction  :   selecting few rows that meet a criteria
+3. union
+4. intersect
+5. minus (difference)
+6. join         :   retreiving data from multiple tables that share relation ship
+7. cartesian product (cross-product)
+
+syntax:
+-------
+SELECT   column-list/*
+FROM     tablename;
+
+UPDATE:
+--------
+TO MODIFY ROWS.
+
+UPDATE   tablename
+SET  col-1 = value-1  [, col-2 = value-2 ,....]
+[WHERE  condition];
+
+
+DELETE:
+-------
+to delete rows.
+
+DELETE  FROM  tablename
+[WHERE   condition];
+
+
+TRUNCATE  TABLE:
+-----------------
+to delete all rows from the table 
+
+TRUNCATE  TABLE  tablename;
+
+
+What is the difference between DELETE and TRUNCATE?
+	if you delete command, deleted rows can be roll backed.
+	if you truncate command, you cannt roll back, since it is a DDL command.
+
+
+DROP TABLE:
+-----------
+DROP TABLE tablename;
+
+                                Normalization:  (database design)
+                                ----------------------------------
+is all about spliting a table into smaller multiple tables.
+
+1NF   : multi-valued columns are not allowed and should have primary key
+2NF   : 1NF && functional dependency
+3NF   : 2NF && not transitive dependency
+
+
+                                    Integrity Constraints
+                                    ---------------------
+These are conditions given for a column (or) combination of columns.
+During DML operations, if we violate any of these rules, oracle server generate constraint-violation
+error messages.
+
+constraints:
+----------------------
+1) NOT NULL
+2) UNIQUE
+3) PRIMARY KEY
+4) FOREIGN KEY   (REFERENCES)
+5) CHECK  (condition)
+
+constraint options:
+---------------------
+do not allow constraint names.
+
+1) DEFAULT
+
+primary key:   (not null && unique)
+-----------------------------------------
+1) is used to identify uniquely each row
+2) a table can have only one primary key
+3) null values are not allowed
+4) duplicate values are not allowed
+5) it is a single column or combination of columns
+
+
+depts - { deptno - (p), dname, loc }
+
+foreign key :
+----------------------------------------
+1) used to establish a relation between parent (master | independent) and child tables (dependent)
+2) it always present in child table
+3) it is a column or combination of columns   
+4) null values are allowed
+5) duplicates are also allowed.
+6) every foreign key must be defined as primary key or unique key in it's parent table.
+7) a table can have many foreign key
+
+emps - { empno - (p), ename, salary - min. is 5000, deptno - (f) }
+
+
+ALTER   TABLE:
+===============
+to modify the structure of the table.
+
+WE CAN ADD
+    new columns
+    new constraints
+WE CAN REMOVE
+    existing columns
+    existing constraints
+WE CAN MODIFY
+    column types, size
+
+syntax:
+-------
+ALTER   TABLE  tablename
+[ADD | MODIFY | DROP | RENAME]   column specification;
+
+
+SELECT:
+-------
+SELECT command can perform the following 4 operations.
+a) arithmetic operations
+b) column aliases
+    alternate name given for columns in the output of SELECT command.
+    column aliases must be enclosed within double quotes unless it is a single word.
+    optionally we may use "AS" keyword after the column name in the SELECT list.
+
+c) concatenated columns
+    combining two or more columns.
+    using concatenation operator ( || )   - double pipe symbol
+d) literals
+    literals must be enclosed within single quotes.
+    it is repeated for each row in the output of the select command.
+
+null:
+-----
+if a column lacks it's value during insertion, it is said to be null.
+null means either unassigned, unpredicted or undetermined.
+null is not same as ZERO.
+it occupy ONE BYTE in the oracle internal storage overhead.
+any operation performed with NULL value, leads to NULL result.
+
+nvl():
+-------
+    nvl(col/val/expr, non-null-value)
+
+
+select employee_id, first_name, salary, commission_pct, salary + (salary * nvl(commission_pct,0)) from employees;
+
+
+distinct qualifier:
+-------------------
+    to eliminate duplicate rows in the output.
+
+operators:
+-----------
+1) arithmetic operators
+    +   -   *   /   
+2) relational operators
+    >   <   =   >=  <=  != (or) <>
+3) logical operators
+    and     or  not
+4) sql operators
+        a) BETWEEN   value-1  AND  value-2
+        b) IN  (value-1, value-2, ....)
+        c) LIKE  'character pattern'
+                i) %    replace 0 or more unknown characters
+                ii) _   replace single unknown character
+        d) IS NULL
+
+        e) NOT BETWEEN   value-1  AND  value-2
+        f) NOT IN  (value-1, value-2, ....)
+        g) NOT LIKE  'character pattern'
+                i) %    replace 0 or more unknown characters
+                ii) _   replace single unknown character
+        d) IS NOT NULL
+
+ORDER BY:
+---------
+the order of retrieval of rows using SELECT statement is insignificant. 
+However we can use ORDER BY clause to specify the sorting order. 
+If used, it must be the last clause in the SELECT statement.
+
+Transaction Control Language (TCL) Commands:
+--------------------------------------------
+Transaction is a logical unit of workdone. (LUW).
+a transaction may be 1 or multiple sql commands.
+there are 2 types.
+a) DDL transaction :    one ddl command makes up one transaction.
+                        it is automatically committed.
+b) DML transaction :    may contain one or multiple commands.
+
+commit :    to save the current transaction
+rollback :  to cancel the current transaction.
+
+
+
+
+Library Functions:
+------------------
+1) mathematical functions
+    a) power(x, y)
+    b) sqrt(n)
+    c) abs(n)
+    d) round()
+    e) trunc()
+    f) ceil()
+    g) floor()
+
+2) character functions
+    a) length()
+    b) upper()
+    c) lower()
+    d) initcap()
+
+3) date functions
+    sysdate : return the system date
+    
+    a) months_between(date-1, date-2)
+    b) last_day(date)
+    c) next_day(date, 'week day name')
+
+4) conversion functions
+    a) to_char(date, 'date picture')
+
+5) functions that accept any datatype as input
+    a) decode (col/expr, search-1, result-1, search-2, result-2, ...., default)
+    
+6) group functions (aggregate functions)
+    a) sum()
+    b) avg()
+    c) min()
+    d) max()
+    e) count()
+
+	group functions do not count null values.
+
+SQL> select count(salary) from employees;
+
+COUNT(SALARY)
+-------------
+          107
+
+SQL> select count(*) from employees;
+
+  COUNT(*)
+----------
+       107
+
+SQL> select count(commission_pct) from employees;
+
+GROUP BY clause:
+    used to divide rows into groups.
+    on each group we can get summary information.
+
+
+display total salary of all employees in each department.
+
+select department_id, sum(salary) from employees
+group by department_id
+order by department_id;
+
+
+
+HAVING clause:
+    used to filter rows after grouping.
+
+
+display all departments having atleast employees.
+
+
+select department_id, count(*) from employees
+group by department_id
+having count(*) >= 5
+order by department_id;
+
+what is the difference between WHERE and HAVING?
++	WHERE is used to filter rows before grouping
++	WHERE clause do not allow group functions.
+
+
++	HAVING is used to filter rows after grouping
+
+
+
+
+
+JOIN:
+    to retrieve data from multiple related tables.
+
+
+select employee_id, department_id, department_name, salary
+from employees
+join departments
+using (department_id);
+
+select employee_id, E.department_id, department_name, salary
+from employees E
+join departments D
+on (E.department_id = D.department_id);
+
+
+left outer join:	matching rows + missing rows in left table
+right outer join:	matching rows + missing rows in right table
+full outer join:	matching rows + missing rows from both tables
+    to get the missing rows along with matching rows in join operation.
+
+    select employee_id, department_id, department_name, salary
+    from employees
+    left outer join departments
+    using (department_id);
+
+    select employee_id, department_id, department_name, salary
+    from employees
+    right outer join departments
+    using (department_id);
+
+    select employee_id, department_id, department_name, salary
+    from employees
+    full outer join departments
+    using (department_id);
+
+sub query:
+----------
+select col-1, col-2, ...
+from  tablename
+where col = (select col from tablename);
+
+the sub query (inner query ) is executed first. the result is passed to the main query (outer query).
+
+there are 2 types.
+a) single-row sub query
+        use =, >, < as comparision operator`
+b) multi-row sub query
+        use IN, > ANY, < ANY, > ALL, < ALL operators.
+
+
+display employee first name who earn the highest salary.
+
+select first_name, salary 
+from employees
+where salary = (select max(salary) from employees);
+
+display all employees who earn the highest salary in their department.
+
+select employee_id, first_name, salary, department_id
+from employees
+where salary in (select max(salary)
+from employees
+group by department_id);
+
+views:
+-------
+a view is a virtual table.
+it is like a window through which we can see the data from an underlying table known as base table.
+a view does not contain any data on it's own.
+it is stored as select statement only.
+
++	if offer security
+
+create view emp_view
+as
+select employee_id, first_name
+from employees;
+
+select * from employee_view;
+
+create view highly_paid_employees
+as
+select employee_id, first_name, salary
+from employees
+where salary > 10000;
+
+select * from highly_paid_employees;
+
+
+sequences:
+---------
+to generate sequence numbers.
+
+create sequence department_id_seq
+start with 280
+increment by 10
+maxvalue is 350;
+
+nextval pseudo column is used to generate next value from the sequence.
+currval pseudo column is used to retrieve current value from the sequence.
+
+index:
+------
+it is meant for faster searching.
+index is created automatically for primary key column.
+
+create index job_id_idx
+on employees(job_id);
+
+select * from employees
+where job_id = 'IT_PROG';
+
+
+
+
+
+
+
+
+
+
+
+

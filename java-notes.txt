@@ -542,6 +542,22 @@ What is the difference between == and equals() ?
 what is the difference between equals() and compareTo() ?
 
 
+StringBuilder and StringBuffer:
+--------------------------------
++	these are peer classes of java.lang.String
++	both are mutable (modifiable)
+
+methods:
+a) length()
+b) capacity()
+c) append()
+d) insert()
+e) replace()
+f) delete()
+g) reverse()
+
+what is the difference?
++	StringBuilder is NOT THREAD-SAFE where as StringBuffer is THREAD-SAFE.
 
 
 
@@ -554,7 +570,7 @@ what is the difference between equals() and compareTo() ?
 	+	structured programming
 	+	object oriented programming
 		-	programs are written that simulate real world objects.
-
+	+	functional programming
 
 class	:	It is a user defined datatype that represent an entity in terms of properties and behaviour.
 		It is a reusable software component.
@@ -568,7 +584,6 @@ class	:	It is a user defined datatype that represent an entity in terms of prope
 object	:	It is a variable whose data type is class.
 		It is the runtime instance of a class.
 		memory is allocated only when an object is created.
-
 
 
 advantages of OOP:
@@ -593,9 +608,7 @@ take any real world example and explain encapsulation, data hiding and abstracti
 
 
 
-[2] 20-jan-2022
-
-access speciers (access modifiers):
+access specifiers (access modifiers):
 +	private
 	+	members can be accessed only within the class in which they are defined
 +	public
@@ -642,7 +655,7 @@ static can be used in 4 ways
 +	static method
 	-	these are used to manage static data members.
 	-	it will not allow non-static members
-	-	static method can be called directy with the class name. we don't need to have any object to call it.
+	-	static method can be called directly with the class name. we don't need to have any object to call it.
 	-	we cannot use "this" keyword in a static method.
 
 +	static block
@@ -684,21 +697,6 @@ class TestApp {
 }
 
 
-java.lang.StringBuilder and java.lang.StringBuffer :
-+	these are peer classes of java.lang.String
-+	both are mutable (modifiable)
-
-methods:
-a) length()
-b) capacity()
-c) append()
-d) insert()
-e) replace()
-f) delete()
-g) reverse()
-
-what is the difference?
-+	StringBuilder is NOT THREAD-SAFE where as StringBuffer is THREAD-SAFE.
 
 
 assignment:
@@ -762,6 +760,8 @@ super:
 
 +	if super() is to be used, it must be the first statement in the code block.
 +	this() and super() cannot be used at a time.	(mutually exclusive)
+
+
 
 what is the difference between method overloading and method overriding?
 
@@ -876,10 +876,6 @@ abstract class:
 	to make a class as an abstract, it must be defined with an "abstract" keyword.
 	we cannot instantiate (create an object) an abstract class.
 
-
-
-
-[3] 21-jan-2022
 
 abstract method:
 ----------------------
@@ -1017,6 +1013,12 @@ final keyword:
 what is the opposite keyword of final?
 
 	???
+
+
+
+---------------------------
+
+
 
 
 interface:

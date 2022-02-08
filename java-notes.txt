@@ -1015,12 +1015,6 @@ what is the opposite keyword of final?
 	???
 
 
-
----------------------------
-
-
-
-
 interface:
 ----------
 +	It is a user-defined datatype but contain only public abstract methods and public static final variables.	(upto JDK 1.7)
@@ -1232,7 +1226,7 @@ throw, throws
 
 	
 	1) try : contain the code where the exception can be generated.
-    	2) catch : contain statements that are to be executed when the specified exception occurred in the correspoding try block
+    	2) catch : contain statements that are to be executed when the specified exception occurred in the associated try block
         3) finally : contain the code to be executed whether an exception occurred or not.  
             the most relevant exception classes mention first.
             least relevant exception mention next.
@@ -1307,7 +1301,6 @@ b) try-with-resources
 
 
 
-[4] 22-jan-2022
 
 
 

@@ -1,0 +1,1746 @@
+JDK Download
+----------------
+https://www.oracle.com/in/java/technologies/javase/javase8u211-later-archive-downloads.html
+
+Eclipse Download
+---------------------
+https://www.eclipse.org/downloads/packages/
+Choose →	Eclipse IDE for Enterprise Java and Web Developers
+Choose →	Windows x86_64
+
+
+
+
+Java
+-----
+What is Java?
++	It is strictly but partially an object oriented programming language.
+
+Who developed Java?
++	James Gosling at sun microsystems
+
+Features of Java
++	platform independent
++	secured
++	robust
++	object oriented
+
++	portable
++	compiled-interpreted
++	multi-threaded
++	architectural neutral
++	disributed
+
+
+
+JDK, JRE and JVM?
++	JDK = JRE + Development tools (javac, java, javaw, javap, javadoc, jdb, javah, jar, appletviewer)
++	JRE = JVM + libraries (rt.jar etc.,) + other files
+
+Is JDK platform independent?
++	No
+Is JRE platform independent?
++	No
+Is JVM platform independent?
++	No
+
+
+
+platform means o/s.
+
+sample.java	(source code)	→	javac (compiler)	→	sample.class	(bytecode)
+byte code is not in 0's and 1's. it is understood by jvm
+byte code should be given to jvm. jvm will convert the bytecode into NATIVE MACHINE CODE (0's and 1's) that is
+understood by the current o/s in which the program is executed.
+
+bytecode is the platform indendent.
+
+
+secured?
++	no explicit pointers
++	programs run inside jvm, not in o/s directly.
+
+robust?
++	means strong, vigour and healthy.
++	exception handling
++	strong type checking mechanism
+
+
+CODING STANDARDS
++	proper naming conventions
++	proper indentation
+
+
+'C' vs Java?
++	const keyword is not there
++	include is not there
++	struct, union are not there
++	typedef is not there
++	pointers are not there
++	no goto statement
+
+C++ vs Java?
++	no operator overloading
++	no friend function
++	no friend classes
++	no scope resolution operator
++	no reference variables
++	no multiple inheritance
+
+
+								Java Tokens
+								-----------
+
++	smallest part of the program is called as Token.
+	a) identifiers
+	b) operators
+	c) keywords
+	d) literals
+	e) comments	
+
+						
+1)	identifiers
+	-	name given to variables, classes, methods etc.,
+
+	a)	Pascal Notation		:	first letter of every word in upper case and the rest in lower case
+						eg: class names, interface names etc.,
+
+						eg: ArrayIndexOutOfBoundsException, ArrayList, TreeMap etc.,
+
+	b)	Camel Notation		:	first word is in lowercase, from the second word onwards Pascal Notation
+						eg: variable names, method names etc.,
+
+						eg: firstNumber, indexOf(), lastIndexOf() etc.,
+			
+	c)	Uppercase Notation	:	constants
+
+	d)	Lowercase Notation	:	package names
+						eg: java.io, java.awt, java.util, java.lang etc.,
+
+
+2) operators
+	-	arithmetic	:	+	-	*	/	%
+	-	relational	:	>	<	==	>=	<=	!=
+	-	logical		:	&&	||	!
+	-	assignment	:	=	+=	-=	*=	/=	%=
+	-	bit-wise 	:	&	|	~	>>	<<	^
+	-	conditional operator :	(condition) ? true-statement : false-statement
+	-	increment/decrement :	++	--
+	-	special operators :
+		;	[]	
+		+	string concatenation
+		"instance of"	operator
+
+
+3) keywords (reserved words)
+	-	if, switch, for, int, float, long
+
+
+4) literals
+	-	any fixed value that does not change during the program execution.
+
+	numeric literals
+	-	integer literals
+		-	decimal		-	base 10		-	0 - 9		-	no prefix	
+		-	binary		-	base 2		-	0,1		-	0b prefix
+		-	octal		-	base 8		-	0-7		-	0  prefix
+		-	hexa-decimal	-	base 16		-	0-9,A-F		-	0x prefix
+
+
+		int a = 101;
+		int b = 0b101;
+		int c = 0101;
+		int d = 0x123ABCF;
+
+
+	-	floating-point literals
+		-	2.56
+	
+	non-numeric literals
+	-	character literals
+		-	single alphabet, single digit, single special symbol enclosed within single quotes
+			eg:	'A'	'7'	'?'
+	-	string literals
+		-	group of characters enclosed within double quotes.
+			eg:	"srinivas"	"49-53-20/25"	"9247175823"	"A"	"" (empty string literal)
+	-	boolean literals
+			true, false
+
+
+5) comments
+	a)	//   				end-of-line comment
+	b)	/* 	..	*/		block comment
+	c)	/** 	..	*/		documentation comment
+
+
+
+	a) identifiers
+	b) operators
+	c) keywords
+	d) literals
+	e) comments	
+
+
+what are the tokens in the following statement?
+
+	double 		area 		= 		PI		*		radius		*		radius		;
+		
+	keyword		identifier	operator	constant	operator	identifier	operator	identifier	operator
+
+
+
+what is the difference between a literal and constant?
+
+	it is also known as symbollic constant.
+	it is a name given to literal.
+	whose value can never be changed in the program execution.
+	constants can be defined using "final" keyword.
+
+
+	double PI = 3.14;		// declaring a variable whose name is PI.
+	final double PI = 3.14;		// declaring a constant whose name is PI
+
+	final int MAX_MARKS = 100;
+	final int PASS_MARKS = 35;
+
+	PI, MAX_MARKS, PASS_MARKS are called constants
+	3.14, 100, 35 are called literal.
+
+
+what are the various data types?
+
++	primitive
+		byte, short, int, long
+		float, double
+		char, boolean
+
++	non-primitive (user-defined)
+		class, interface, enum, annotation
+
+
+
+package:
+	it is a collection of related classes, interfaces and sub packages.
+	internally it is represented as a folder in O/S.
+
+
+	reverse of the domain name.	
+
+	www.samsung.com	→	com.samsung.ui, com.samsung.model, com.samsung.service, com.samsung.controller
+
+
+
+System.out.println("Hello world");
+	
+	System		►	class available in java.lang package
+	out		►	a static object of java.io.PrintStream class
+	println()	►	a method in java.io.PrintStream class
+
+
+String[] args?
+	called as command-line arguments.
+	this is another way of taking inputs.
+
+
+print all the command line arguments.
+
+print the sum of two numbers passed as command line arguments.
+
+
+Can main method be overloaded?
+---------------------------------
+YES
+
+
+
+Wrapper classes		(java.lang)
+------------------------------------
+
+
+	wrapper class			static method
+	--------------------------------------------------------------------
+	Integer				parseInt(string-form-int)
+	Double				parseDouble(string-form-double)
+
+
+
+
+	int a = Integer.parseInt("123");
+	System.out.println(a);			//	123
+
+
+	double b = Double.parseDouble("25.789");
+	System.out.println(b);			//	25.789
+
+
+
+Can we have two main methods in a java program?
+(or)
+Can main method be overloaded?
+
+	YES.
+	
+
+method overloading:
++	if two or more methods in a class having the same name but with different parameter list, then it is said to be 
+	overloading.
+
+
+
+
+						control structures	
+						(control statements)
+					--------------------------------------------
+
++	if, switch				(decision making)
++	for, while, do..while, enhanced for	(looping)
++	break, continue				(jump)
++	labelled break, labelled continue
+
+
+what is the difference between if and switch?
++	"if" is a bi-directional decision making statement.
+	> , <, ==, >=, <= , !=
+	int, long, float, double, byte, short, char, boolean
+
++	"switch" is a multi-directional decision making statement.
+	only ==	(equality) comparisions
+	illegal data types	:	float, double, boolean
+	legal data types	:	char, byte, short, int, enum, String
+
+
+for, while, do..while	-	statements are executed as long as the condition is true.
+
+
+how to choose between for and while?
+	for loop is used to iterate set of statements for a finite number of times.
+	where as while loop is used to iterate set of statements for an indefinite number of times. 
+
+
+	factorial program	►	for
+	reversing a number	►	while
+
+
+what is do..while loop?
++	to execute a loop at least once irrespective of the condition.
+
+
+what is the result of a condition?
++	true or false
+
+
+what is the difference between break and continue?
++	whenever a break statement is encountered within any loop, the control immediately comes out of the loop 
+	without executing remaining iterations.
+
+
+
+1) accept a number. reverse it. print it.
+	eg: input : 749
+	ouput : 947
+
+2) accept a number. print the sum of the digits it.
+	eg: input : 749
+	output : 20	(=9+4+7)
+
+3) accept a number. print whether it is prime number or not.
+
+4) accept a number. print whether it is palindrome or not.
+	eg: input : 121
+	    output : palindrome
+
+5) accept a number. print whether it is armstrong or not.
+
+	eg: input : 153
+	output : 3^3 + 5^3 + 1^3 = 153	
+
+6) fibonacci series
+
+
+Array
++	It is a linear collection of homogeneous data items stored under single name.
++	It is a static data structure means we cannot change the size of the array.
++	In java, array is an object.
++	Every array has a special field, "length" that return number of elements in that array.
+
+types of array:
++	single dimension
++	multi dimension
++	jagged array
+
+
+java.util.Scanner:
++	used to accept the data into variables during runtime
+
++	nextInt()
++	nextDouble()
++	nextLine()
++	next()
+
+
+enhanced for loop:
++	syntax:
+		for(datatype  var : array/collection) {
+			statement(s);
+		}
+
+what is the difference between for and enhanced for loop:
++	the loop variable in for loop is always int.
+	the loop variable in enhanced for loop is always same as the array type.
++	enhanced for loop can be used only in forward direction (start element to stop element).
+
+
+initializing an array:
++	int[] arr = { 10, 20, 30 };
+
+
+note:
++	every row in a double dimensional array is treated as a single dimension array internally by java.
+
+
+     darr[3][3]
+1	2	3	→	darr[0]		
+4	5	6	→	darr[1]
+7	8	9	→	darr[2]
+
+
+Jagged Array:
++	each row contain different number of columns.
+
+
+eg:
+
+	jarr
+
+1	2	3			==>	jarr[0]
+4	5				==>	jarr[1]
+6					==>	jarr[2]
+7	8	9	10		==>	jarr[3]
+
+
+
+
+java.util.Arrays:
+
++	this class offer many utility methods that can work on arrays.
+
+static methods of Arrays class:
+--------------------------------
++	toString(array)
++	equals(array-1, array-2)
++	sort(array)
++	binarySearch(array-1, key)
+	+	the array must be in sorted order to perform binarySearch operation.
+
+
++	deepToString(darray)
++	deepEquals(darray-1, darray-2)
+
+
+
+functions (methods):
+
++	It is a sub program designed to perform a specific task that can be used repeatedly.
+
+
++	function definition
+		returnType   functionName(datatype  arg-1, datatype  arg-2, ...) {
+			statment(s);
+		}
+
++	function call
+		[var = ] functionName(arg-1, arg-2, ...);
+
+
+actual parameters	:	parameters specified in the function call statement
+formal parameters	:	parameters specified in the function definition
+
+
+function to return the sum of the digits.
+
+
+function overloading (method overloading):
++	if two or more functions (methods) having the same name but with different parameter list then it is said to be overloading.
+ 
+
+
+Can I pass array as an argument to function?
++	YES
+
+Can I return an array from a function?
++	YES
+
+
+function return minimum and maximum in an array using functions.
+
+
+
+							varargs
+						(variable arguments)
+
+"..." (three dots) symbol is known as "ellipsis".
+it represent the function can take any number of values that are comma-seperated.
+
+
+Note:
++	the varargs parameter must be the last formal parameter in the function definition.
+
+
+
+								String class
+								-------------
+							     (java.lang package)
+
+java.lang 	►	default package
+			means it is imported automatically for every program.
+
+			eg: String, System, Integer, Float, Double, Long, Boolean etc.,
+
+java.lang.String:
+-------------------
++	it is a pre-defined class
++	it is immutable (not modifiable)
+
+
+declaring String object:
+------------------------
+1) String str;
+2) String str = "java";
+	         0123
+3) String str = new String();
+4) String str = new String("hello");
+
+methods:
+--------
+a) length()
+b) charAt(index)
+	str.charAt(0)		→	j
+c) indexOf(String)
+	str.indexOf("a");	→	1	(first occurance)
+d) lastIndexOf(String)
+	str.lastIndexOf("a")	→	3	(last occurance)
+e) substring(start_index_inclusive  [, end_index_exclusive])
+	str.substring(2,4)	→	va
+	str.substring(2)		→	va
+f) startsWith()	→	str.startsWith("ja")	→	true
+g) endsWith()	→	str.endsWith("va")	→	true
+h) contains()	→	str.contains("a")	→	true
+i) toUpperCase()	
+j) toLowerCase()
+k) concat()	→	to combine two string
+l) replace(old_char, new_char)
+m) trim()	→	remove both leading and trailing spaces.
+n) equals()	→	compare two strings considering case
+o) equalsIgnoreCase()
+p) compareTo()	→	to compare two strings	→	return 0 if both are equal, +ve value if string1 is big, -ve value if string2 is big
+q) isEmpty()
+r) toCharArray()
+s) split(regex)
+
+What is the difference between == and equals() ?
+
+what is the difference between equals() and compareTo() ?
+
+
+
+
+
+							OOPS
+					(Object Oriented Programming System)
+
++	It is a programming paradigm.
+	+	monolithic programming
+	+	procedural programming
+	+	structured programming
+	+	object oriented programming
+		-	programs are written that simulate real world objects.
+
+
+class	:	It is a user defined datatype that represent an entity in terms of properties and behaviour.
+		It is a reusable software component.
+		properties are also known as "data members" or "fields".
+		behaviours are represented as "methods" (method is a funcrtion that defined inside a class)
+		No memory is allocated when we define a class.
+
+		classes are created for different purposes.
+		classes are also known as "model" or "pojo"	(POJO stands for Plain Old Java Object)
+
+object	:	It is a variable whose data type is class.
+		It is the runtime instance of a class.
+		memory is allocated only when an object is created.
+
+
+
+advantages of OOP:
++	code reusability
++	security
+
+
+features of OOP:
++	encapsulation		: 
++	data hiding		: keeping data safe 
++	abstraction		: behaviour hiding
+
+
+take any real world example and explain encapsulation, data hiding and abstraction?
+
+
++	inheritance
++	polymorphism
++	message passing
++	persistence
+
+
+
+
+[2] 20-jan-2022
+
+access speciers (access modifiers):
++	private
+	+	members can be accessed only within the class in which they are defined
++	public
+	+	members can be accessed from any class.
++	default
+	+	members can be accessed from any class in the same package
++	protected
+	+	members can be accessed from sub classes also.
+
+
+setters (mutators) and getters (accessors):
++	setter is a public method of a class through which other programs can change the value of associated data member.
++	getter is a public method of a class through which other programs can retrieve the value of associated data member
+
+
+
+"this" reference:
++	"this" means implied object.
++	it holds the reference of current object that is invoking a constructor or method.
+
+
+
+
+how do you implement data hiding?
++	making data members as private.
+
+how do you implement encapsulation?
++	providing setters and getters.
+
+data members are stored independently for each object.
+methods are stored only once in the memory and thay are accessed by all objects of the class.
+
+
+
+static:
++	static means "sharable"
+
+static can be used in 4 ways
++	static data member
+	-	these are also known as "common data members"
+	-	it is stored only once but can be accessed by all objects of the class.
+	-	it is used to store common data across all objects.
+
++	static method
+	-	these are used to manage static data members.
+	-	it will not allow non-static members
+	-	static method can be called directy with the class name. we don't need to have any object to call it.
+	-	we cannot use "this" keyword in a static method.
+
++	static block
+	-	block is a group of statements enclosed within curly braces.
+	-	static block is a block that is defined with "static" keyword.
+	-	it is the first code block that is executed in the program.
+	-	it is executed automatically 
+		-	whenever the class is accessed for the first time.
+			-	by creating an object of that class
+			-	whenever a static method is called
+			-	whenever a static data member is accessed
+
+	can we have multiple static blocks?
+	-	WE CAN.
+
+
++	static class	
+	-	it can be used only on inner class
+
+
+Can I overload static methods?
++	YES
+
+class Test {
+	public static void show(int x) {
+		System.out.println(x);
+	}
+
+	public static void show(double x) {
+		System.out.println(x);	
+	}
+}
+
+class TestApp {
+	public static void main(String[] args) {
+		Test.show(100);
+		Test.show(5.6);
+	}
+}
+
+
+java.lang.StringBuilder and java.lang.StringBuffer :
++	these are peer classes of java.lang.String
++	both are mutable (modifiable)
+
+methods:
+a) length()
+b) capacity()
+c) append()
+d) insert()
+e) replace()
+f) delete()
+g) reverse()
+
+what is the difference?
++	StringBuilder is NOT THREAD-SAFE where as StringBuffer is THREAD-SAFE.
+
+
+assignment:
++	palindrome program using String class.
+
+
+
+constructors:
++	It is a special method and is executed automatically whenever an object is created.
++	It should have the same name as that of class.
++	It can have parameters
++	But it cannot return any value, and should not have return type as "void".
++	A class can have many constructors. This is called "constructor overloading".
+
++	It is used to initialize data members.
+								
+
+types of constructors:
++	default constructor	(no-parameter constructor)
++	parameter constructor
++	copy constructor
+
+note:
++	when a class do not have any constructor, java provide one default constructor.
++	but if the class has atleast one constructor, java do not provide any constructor.
+
+
+assignment:
+-----------
+create a class Product with the following data members - id, name, price.
+whenever we create objects, supply only name and price.
+id should be autogenerated. (first product id - 1001, second product - 1002, .... etc.,)
+
+	
+inheritance:
++	creating a new class (sub class) from an existing class (super class)
++	sub class can use all the features of super class as well as any extra features that are added to it.
++	using "extends" keyword we can create a sub class.
++	it represent an "is-A" relationship	(tightly coupled)
++	it is mainly for code reusability.
+
+
+types of inheritance:
+----------------------
++	simple (single)
++	hierarchical
++	multi-level
+
++	multiple inheritance is not supported in java. to acheive this, we have to use interfaces.
+
+
+super:
+------
++	super is used to call super class constructor from sub class constructor.
+		super(arg-1, arg-2, ...)
+	if used, super() call must be the first statement in the code block.
+
++	super is used to access super class data members or super class methods from sub class.
+		super.dataMember
+		super.method(arg-1, arg-2, ...)
+
++	if super() is to be used, it must be the first statement in the code block.
++	this() and super() cannot be used at a time.	(mutually exclusive)
+
+what is the difference between method overloading and method overriding?
+
+method overloading:
+--------------------
+when two methods have the same name but with different parameter list.
+
+method overriding:
+-------------------
+when a sub class contain a method that has same signature as that of another method in it's super class then the sub class method is said to be
+overriding.
+
+method signature	=	 method name + parameter list
+
+
+
+it is a best practice to use "@Override" annotation on overrided methods.
+it is optional.
+But if used, when overriding is not done properly, compiler will give an error.
+
+
+
+
+
+class Test {
+	public int add(int a, int b) {
+		return a+b;
+	}
+	public int mul(int a, int b) {
+		return a*b;
+	}
+	public int add(int a, int b, int c) {			// overloading
+		return a+b+c;
+	}
+	
+}
+
+
+class subTest extends Test {
+	public int add(int a, int b) {				// overriding	
+		return a+b+100;
+	}
+	public int mul(int a, int b, int c) {			// overloading
+		return a*b*c;
+	}
+}
+
+
+class TestApp {
+	public static void main(String[] args) {
+		Test obj = new Test();
+		System.out.println(obj.add(5,6));		// 11
+		SubTest obj2 = new SubTest();
+		System.out.println(obj2.add(6,7));		// 113
+		System.out.println(obj2.add(1,2,3));		// 6
+
+	}
+}
+		
+
+java.lang.Object	class
+------------------------------
++	it is universal super class (cosmic class)
++	every class in java, whether it is pre-defined or user-defined, they are inherited from java.lang.Object class.
+
+methods:
+1) public String toString()
+2) public boolean equals(Object o)
+3) public int hashCode()
+4) public Object clone()
+5) protected void finalize() throws Throwable 
+
+
+					person(name, age)
+						↑
+						↑
+	Employee	(salary)	←----------------→	Student		(fee)
+	    ↑
+	Manager		(bonus)
+
+
+constructor phenomenon:
+-----------------------
+
++	when an object is created, the constructor of that class is called.
+
++	when an object of sub class is created, super class constructor is called first and 
+    	then the sub class constructor is called. This hold true for any levels of inheritance.
+
+	when a sub class object is created with
+
+	i) default constructor		then the super class default constructor is called.
+	ii) parameter constructor	then the super class default constructor is called.
+	iii) copy constructor		then the super class default constructor is called.
+
+
+
+Abstract Polymorphism	(Abstraction)
+---------------------------------------------------------
++	abstraction is "disclosing only required details and hiding the background implementation".
++	abstract means "incomplete or unclear". It is an idea but we don't know how to implement.
++	abstraction means "behaviour hiding".
+
+
+abstract class:
+--------------------
+	It is a class which should not have objects created.
+
+	In this scenario, we never need to create an object for Person.
+        so, Person class can be declared as an abstract.
+
+	to make a class as an abstract, it must be defined with an "abstract" keyword.
+	we cannot instantiate (create an object) an abstract class.
+
+
+
+
+[3] 21-jan-2022
+
+abstract method:
+----------------------
+	It is a method which do not have any implementation (i.e., definition)
+
+	1) an abstract method must be written only inside an abstract class.
+	2) but an abstract class need not contain any abstract method.
+	3) all sub classes of abstract class, must implement (override) all abstract methods. 
+       	4) if not, the sub class must also be marked as "abstract".
+
+abstract class A {
+    abstract void show();
+}
+
+class B extends A {
+    @Override
+    protected void show() {               
+        System.out.println("B");
+    }
+}
+
+class Test {
+    public static void main(String [] args) {
+        B obj = new B();
+        obj.show();
+    }
+}
+
+error:
+    cannot reduce the visibility of the inherited method.
+
+
+private	► protected ► default ► public
+
+
+
+polymorphism:
+	poly means many
+	morph means forms
+
+	exhibiting different behaviours for a same method call.
+
+	
+
+	man	►	move()	►	walk
+	fish	►	move()	►	swim
+	bird	►	move()	►	fly
+	snake	►	move()	►	crawl
+
+	move()	is known as polymorphic method.	
+
+
+	polymorphism
+	+	compile-time polymorphism	(early binding)
+		eg: method overloading
+
+	+	run-time polymorphism		(late binding)
+		eg: method overriding
+
+note:
+-----
+	we can store object of a sub class in a super class reference variable.
+
+
+
+Type Casting:
+-------------
+	Converting one datatype to another.
+	It is only work on primitive data types.
+
+	2 types.
+
+	a) Broadening	(promotion)		implicit
+	b) Narrowing	(demotion)		explicit
+
+
+	primitive types:
+	-------------------
+	a) broadening:
+	    -----------------
+	int x = 45;
+	double d = x;		(implicit)	- broadening
+
+	double d2 = 67;		// OK
+	int y = '@';		// OK
+
+	char -> int -> double
+
+	a) narrowing: (explicit):
+	------------------------------
+	int x = 45.1;		// error
+	int x = (int)45.1;	// OK
+
+	char ch = (char)156;	// OK
+
+
+Referencing:  (UpCasting and DownCasting):
+------------------------------------------
+       					     Employee
+			                        |
+            	-----------------------------------------------------------------
+	        |					                        |
+              Manager				                	ContractEmployee
+	        |
+       Managing Director
+
+
+eg:
+	Employee emp1 = new Employee();	
+	Employee emp2 = new Manager();		
+	Employee emp3 = new ContractEmployee();	
+	Employee emp4 = new ManagingDirector();
+	Manager m2 = new ManagingDirector();	
+
+
+	Manager m3 = new ContractEmployee();			// Not Possible	
+	ContractEmployee ce = new Employee();			// Not Possible
+
+
+
+	user-defined data types:
+	-----------------------------------------
+	ContractEmployee ce2 = emp3;				// Not Possible		
+
+	ContractEmployee ce2 = (ContractEmployee)emp3	
+	
+
+	
+final keyword:
+------------------
+1) final class : it cannot be inherited.
+2) final method : it cannot be overridden.
+3) final variable : value of which cannot be modified. (constant)
+
+what is the opposite keyword of final?
+
+	???
+
+
+interface:
+----------
++	It is a user-defined datatype but contain only public abstract methods and public static final variables.	(upto JDK 1.7)
++	It is mainly used to achieve multiple inheritance.
++	We can acheive 100% abstraction.
+
++	we cannot create object for an interface.
++	create a sub class (using implements keyword) and override all the abstract methods then create object for the sub class and use it.
+
+
+class		►	extends		►	sub class
+interface	►	implements	►	sub class
+interface	►	extends		►	sub interface
+
+class		►	NOT POSSIBLE 	►	sub interface
+
+eg-1:
+------
+
+interface   B {
+
+}
+
+interface   C {
+
+}
+class	A	implements	B, C {
+
+}
+
+
+eg-2:
+-----
+class	X {
+
+}
+
+interface  Y {
+
+}
+
+
+class    Z   extends  X   implements   Y {
+
+}
+
+eg-3:
+-----
+interface A {
+
+}
+interface B {
+
+}
+
+interface C   extends  A, B {
+
+}
+
+
+what is the difference between abstract class and interface?
+???
+
+
+	
+
+ 								Built-In Packages
+						                ------------------
+                                        			(Java SE Libraries)
+
+java.lang			(default package - because it is imported for every program)
+	Wrapper classes - Integer, Double, Float, Long, Boolean
+	Object          
+	System
+	Math
+	String
+	StringBuffer
+	StringBuilder
+	Exception
+	Throwable interface
+	Runnable interface
+	Thread
+	
+java.util
+    Scanner
+    Date        (deprecated)
+    Calendar    (deprecated)
+    Collection API
+
+
+java.io
+    BufferedReader	
+
+
+1) java.lang.System class:
+   -------------------------------
+
+	class variables			              	object
+	-------------------				---------
+	public static java.io.InputStream		in
+	public static java.io.PrintStream		out
+	public static java.io.PrintStream		err
+
+	System.in	carries signal from keyboard to VDU.
+	System.out, System.err carries signal directly to VDU.
+
+
+	methods:
+	------------
+	public static void gc();		request for garbage collection.
+	public static void exit(int)		terminates the program then and there. int could be either a 0 or 1.
+    
+
+
+2) java.lang.Math
+-------------------
+	public static fields:
+	------------------------
+		E, PI
+    	
+	public static methods
+	----------------------------
+		double pow()
+		double sin(angle in radians)
+            	Math.sin(30)    =>  ???
+            	Math.sin(Math.toRadians(30))    =>  0.5
+
+        	double cos(angle in radians)
+		double sqrt()
+
+		ceil() : return next integer
+            	Math.ceil(11.2) => 12
+		floor() : return previous integer
+            	Math.floor(11.9) => 11
+		round() 
+            	Math.round(11.2) =>  11
+            	Math.round(11.9) =>  12
+
+		abs()
+		toRadians()
+		toDegrees()
+
+
+
+Boxing:
+    converting primitive variable into a corresponding wrapper object
+
+    int x = 89;
+    Integer iobj = x;   // auto-boxing
+
+unBoxing:
+    converting wrapper object back into corresponding primitive variable
+ 
+    Integer iobj = new Integer(109);
+    int x = iobj; 	// auto-unboxing
+
+
+static import: (JDK 1.5)
+------------------------
+    java.lang.Math class provide static methods.
+        sqrt()
+        abs()
+        pow()
+
+    int a, b;
+    double hypotenuse = Math.sqrt(Math.pow(a,2) + Math.pow(b,2));
+
+    (or)
+    import static java.lang.Math.sqrt;
+    import static java.lang.Math.pow;
+
+    double hypotenuse = sqrt(pow(a,2) + pow(b,2));
+
+
+    import java.util.Scanner;       // recommended
+    import java.util.*;             // bad coding practice
+	
+
+	
+
+								Exception Handling
+								------------------
+
+Exception is an object that represents a situation where the application is terminated.
+Every Exception is a pre-defined class in Java.
+
+
+
+   		java.lang.Throwable (i)
+                        |
+                        |
+            ---------------------------------
+            |                               |
+            java.lang.Error         java.lang.Exception
+                                            |
+                                            |
+                                    java.lang.RuntimeException
+
+
+
+Exception classes that are derived from java.lang.RuntimeException class - UNCHECKED
+unchecked exceptions are not informed by the compiler.
+
+All other are  								 - CHECKED
+
+
+try, catch, finally
+throw, throws
+
+	
+	1) try : contain the code where the exception can be generated.
+    	2) catch : contain statements that are to be executed when the specified exception occurred in the correspoding try block
+        3) finally : contain the code to be executed whether an exception occurred or not.  
+            the most relevant exception classes mention first.
+            least relevant exception mention next.
+
+    a try block must follow an immediate catch block (or) a finally block.
+
+            try {				try {
+                ..					...
+            } finally {				} catch(ExceptionClassName excep) {
+                ...					...
+            }					}
+
+    a try can have many catch blocks.
+    a try block can have another try block within it.
+
+    
+note:
+----- 
++	we are not supposed to handle UnChecked Exceptions
+        we have to avoid these exceptions using a technique called "Defensive programming".
+
+
++	if you do not handle checked exceptions, the compiler will give errors.
++	checked exceptions must be handled, they cannot be avoided.
+
+
+
+User Defined Exceptions:
+------------------------
+1. create a class which should be derived from java.lang.Exception or java.lang.RuntimeException
+2. write a constructor that takes a String parameter.
+3. call the super class constructor by passing this String to it.
+
+
+4. in the app,
+	enclose the problamatic code inside a try block.
+	raise the user defined exception using "throw" keyword.
+	handle the user defined exception in the corresponding catch block.
+
+throw keyword:
+--------------
++	to raise an exception
+
+throws keyword:
+----------------
++	delegating the exception handling responsibility to the caller of the method.
+
+
+JDK 7 Enhancements:
+---------------------------------
+a) multi-catch exception
+
+    try {
+	    statement(s)
+    } catch (Exception-1   |  Exception-2  |  Exception-3    obj) {
+	    statement(s)
+    }
+
+
+b) try-with-resources
+
+    try (declare closable resources here....){
+                    ........................
+    } catch(....){
+
+    }
+
+    the closable resource will be close automatically.
+
+    a Resource has to implement java.lang.Closable or java.lang.AutoClosable interface
+    to be recognized as closable.
+
+
+
+[4] 22-jan-2022
+
+
+
+ 								Generics
+							        --------
+These are called as ADT	(abstract data types)
+
+when there is a logic which is indepedent of datatypes, then we can use ADT. 
+eg: Sorting on int's, float's, double's or char's are same.
+
+generics are implemented using angular brackes. < >. The imaginary datatype is represented as T. 
+eg: <T>.
+if we have two imaginary datatypes then <T1, T2>
+
+generics do not support primitive types.
+T can be Book, Car, ComplexNumber, Employee etc.,
+but not with int, char, float, double.
+if it is inevitable, we may use Wrapper classes.
+
+1) generic methods
+
+	public void sort(T[] arr) {
+		// logic goes here ...
+	}
+
+
+2) generic classes
+
+class  Test<T> {
+	private:
+		T   data;
+	}
+}
+
+								Collection API   (java.util)
+								----------------------------
+								(Collection Framework)
+API	►	Application Programming Interface
+
+It is a collection of interfaces, abstract classes.
+Java provided implementation classes also for Collection API.
+
+
+Collections contain following 3 elements:
+a) declarations
+b) implementations
+c) algorithims
+
+
+
+							<< Collection API Diagram >>
+
+List interface
++	allow duplicate items
++	index-based operations are possible
++	nulls are allowed
+
+
+	+	ArrayList class
+		-	is best when traversal is done more
+		-	insertions and deletions are less
+		-	internally use an expandable array
+		-	it is not thread-safe
+
+			add(), remove(), set(), size(), get(), iterator()
+			clear(), isEmpty()
+
+		what is the default capacity of an array list?
+			10
+
+		when we are trying to add 11 the element, the capacity is automatically increased.
+			newCapacity = oldCapacity + (oldCapacity >> 1)
+	
+		capacity is increased by 50%.
+	
+
+	+	LinkedList class
+		-	is best when insertions and deletions are frequently done.
+		-	internally use a double-linked list.
+
+			descendingIterator()
+			
+	
+	+	Vector		(legacy class)
+
+
+
+what is difference between iterator and list iterator?
+???
+
+how do you compare two arraylists whether they are equal or not?
+???
+
+what is the difference between arraylist and vector?
++	vector is a legacy class
++	it is a thread-safe (synchronized)
++	the default capacity for vector is 10.
++	the capacity is increased by 100%.
+
+
+write a demo program on Vector?
+???
+
+write a demo program on PriorityQueue?
+???
+
+
+
+
+Set interface
++	do not allow duplicates
++	no index based operations are possible
+
+
+	+ HashSet class		:	uncertain order
+	+ LinkedHashSet		:	insertion order
+	+ TreeSet		:	sorted order
+
+
+Map interface
++	used to store key-value pair of data.
++	key cannot be duplicated
++	value can be duplicated
++	only one key can be null.
++	value can have any number of nulls.
++	key + value together known as "Entry".
+
+
+	+ HashMap
+	+ LinkedHashMap
+	+ TreeMap		: sorted order of key
+
+
+	put(k,v), get(k), remove(key), containsKey(key), containsValue(value)
+	keySet(), values(), entrySet()
+
+
+java.util.Collections class:
+-------------------------------
+	a) sort(arrayList)
+	b) binarySearch()
+	c) fill()
+
+
+java.lang.Comparable interface:
+---------------------------------
+	Employee class should be inherited from Comparable interface.
+	
+	public int compareTo(Employee o) {
+		// logic goes here ..
+	}
+
+
+java.util.Comparator interface:	
+--------------------------------
+	Without disturbing the Employee class, other programmers can create their own comparators.
+
+
+	public int compare(Employee o1, Employee o2) {
+		// logic goes here ..
+	}
+
+
+what is the difference between Comparable and Comparator?
+---------------------------------------------------------
+
+		Comparable									Comparator
+		----------									----------
+1) Comparable provides a single sorting sequence. In other words, 		The Comparator provides multiple sorting sequences. 
+   we can sort the collection on the basis of a single element 			In other words, we can sort the collection on the basis
+   such as id, name, and price.	 						of multiple elements such as id, name, and price etc.
+
+2) Comparable affects the original class, i.e., the actual class 		Comparator doesn't affect the original class, i.e., the 
+   is modified.	  								actual class is not modified.
+
+3) Comparable provides compareTo() method to sort elements.			Comparator provides compare() method to sort elements.
+
+4) Comparable is present in java.lang package.					A Comparator is present in the java.util package.
+
+5) We can sort the list elements of Comparable type by 				We can sort the list elements of Comparator type by 
+   Collections.sort(List) method.						Collections.sort(List, Comparator) method.
+
+
+
+what is the contract between equals() and hashCode() ?
+
+	when two objects are equal as per equals() method, the hash codes must be same.
+	but the vice versa is not true.
+
+	when ever you override equals() method, make sure that hashCode() is also override.
+
+
+
+
+							IOStreams (java.io)
+							-------------------
+
+
+stream : flow of data.
+
+iostreams are used to store the data permanantly (in the form of files)
+
+two types:
+1) text stream	(character stream)
+	-	to store any kind of information
+
+
+	Reader
+		FileReader
+		BufferedReader
+	Writer
+		FileWriter
+		PrintWriter
+
+2) binary stream (byte stream)
+	-	to store objects, audio, video, image
+
+	InputStream
+		FileInputStream
+		ObjectInputStream
+	OutputStream
+		FileOutputStream
+		ObjectOutputStream
+
+serialization	:	storing (writing) object into a file
+			the class should implement java.io.Serializable interface.
+			Serializable interface is called as a null interface or marker interface (no methods to override)
+
+			writeObject()
+
+de-serialization :	reading object from a file.
+			
+			readObject()
+
+transient	:	field that is marked with this modifier, it won't be participated in Serialization process.
+
+
+
+
+								Object Cloning
+								--------------
+
+The clone() method of java.lang.Object class creates a shallow copy of the object.
+
+Here, the shallow copy means it creates a new object and copy all the fields and methods associated with the object.
+
+The class should be inherited from Cloneable interface.
+we have to override clone() method.
+
+
+
+
+							final, finally and finalize()?
+							------------------------------
+
+	
++	finalize() is the method of Object class. 
++	This method is automatically called just before an object is garbage collected. 
++	finalize() method overrides to dispose system resources, perform clean-up activities and minimize memory leaks.
+
+
+
+
+								Multi Threading
+								----------------
+what is a thread?
++	it is a light weight process.
++	we can have multiple threads in a program using which we can perform multiple tasks parallelly.
+
+how many ways?
++	by extending java.lang.Thread class
++	by implementing java.lang.Runnable interface
+
+constructors:
++	public Thread()
++	public Thread(Runnable)
+
+
+why two ways?
++	if you want to create a thread on a sub class, we cannot use extends again.
++	here we have to use implements Runnable.
+
+
+class 		A 	
+{
+
+}
+
+
+class		B	extends		A   implements  Runnable {
+
+
+}
+
+
+
+what is a thread life cycle?
+[diagram]
+
+life cycle methods?
++	start()
++	stop()
++	run()		:	it contain statements related to the task
+				it is executed automatically when we call start()
+
+other methods:
+wait()
+notify()
+sleep(milliseconds)
+suspend()
+yield()
+resume()
+
+currentThread()
+setName()
+getName()
+getPriority()
+setPriority()
+getId()
+isAlive()
+setDaemon(boolean)
+
+
+Thread priorities:
+---------------------
+It is an integer between 1 to 10.
+
+1	MIN_PRIORITY
+5	NORM_PRIORITY		(default priority)
+10	MAX_PRIORITY
+
+
+What is Daemon thread?
++	Daemon thread is abruptly terminated when no other threads are running.
++	It cannot run on its own.
+
+setDaemon(true);
+
+
+synchronization?
++	it is the capability to control the access of multiple threads to any shared resource.
+
++	synchronized method
++	synchronized block
+
+
+
+
+							Concurrency API
+							---------------
+						    (java.util.concurrent)
+
+ThreadPool
+ExecutorService:
+	it allow us to create a pool of threads.
+
+	+	newFixedThreadPool(number_of_threads)
+
+
+
+
+
+[5] 24-Jan-2022
+
+
+							Java 8 Features
+							----------------
+1) DateTimeAPI		(java.time)
+	+	LocalDate
+	+	LocalTime
+	+	LocalDateTime
+
+		static methods:
+		+	now(), of(yy,mm,dd,hh,mi,ss), parse(string-form-date)
+
+
+	+	Period			(used to find the gap between two dates)
+		+	between()
+		
+	+	Duration		(used to find the gap between two times)
+
+	+	DateTimeFormatter
+
+
+
+accept a login time and logout time. print the work duration.
+
+
+
+
+2) Enhancements in interfaces:
+	+	default method
+	+	static method
+
+
+3) Functional interface:
+	+	When an interface contain only one abstract method, then it is said to be a functional interface.
+	+	@FunctionalInterface annotation can be used.
+
+	pre-defined functional interfaces:
+	1) Consumer	:	accept a parameter but do not return any value
+	2) Supplier	:	do not accept any parameter but return any value
+	3) Predicate
+	4) Function
+
+
+
+4) Lamdba 
+	+	It is meant for functional interface.
+
+	
+
+5) Stream
+	+	A Stream can be defined as a sequence of elements from a source. 
+	+	The source of elements may be a Collection or Array.
+	+	streams cannot store any data on it's own.
+
+
+	intermediate operations
+	1)	filter()
+	2) 	map()
+	3) 	sorted()
+
+
+	terminal operations
+	1) 	count()
+	2) 	sum()
+	
+
+
+6) Method Reference
+
+
+
+
+
+
+

@@ -9,3 +9,40 @@ Javascript
    also an arithmetic operator to choose from a dropdown list.
    place a button with the title "Calculate"
    perform the selected arithmetic operation. and print the result in a <h1> tag.
+
+
+Core Java
+-----------
+1) accept a number. reverse it. print it.
+	eg: input : 749
+	ouput : 947
+
+2) accept a number. print the sum of the digits it.
+	eg: input : 749
+	output : 20	(=9+4+7)
+
+3) accept a number. print whether it is prime number or not.
+
+4) accept a number. print whether it is palindrome or not.
+	eg: input : 121
+	    output : palindrome
+
+5) accept a number. print whether it is armstrong or not.
+
+	eg: input : 153
+	output : 3^3 + 5^3 + 1^3 = 153	
+
+6) fibonacci series
+
+7) matrix multiplication
+
+8) matrix transpose
+
+9) function to return the sum of the digits.
+
+
+
+
+
+
+

@@ -1507,8 +1507,6 @@ what is the contract between equals() and hashCode() ?
 
 							IOStreams (java.io)
 							-------------------
-
-
 stream : flow of data.
 
 iostreams are used to store the data permanantly (in the form of files)
@@ -1561,17 +1559,11 @@ The class should be inherited from Cloneable interface.
 we have to override clone() method.
 
 
-
-
 							final, finally and finalize()?
 							------------------------------
-
-	
 +	finalize() is the method of Object class. 
 +	This method is automatically called just before an object is garbage collected. 
 +	finalize() method overrides to dispose system resources, perform clean-up activities and minimize memory leaks.
-
-
 
 
 								Multi Threading
@@ -1600,10 +1592,11 @@ class 		A
 }
 
 
-class		B	extends		A   implements  Runnable {
+class		B	extends		A   implements Runnable {
 
 
 }
+
 
 
 
@@ -1657,91 +1650,29 @@ synchronization?
 +	synchronized block
 
 
+								AWT
+							(Abstract Window Toolkit)
+
+to develop windows based application (GUI)
++	using AWT components
++	using Swing API  (JFC - Java Foundation Class Library)
 
 
-							Concurrency API
-							---------------
-						    (java.util.concurrent)
+								Applet
 
-ThreadPool
-ExecutorService:
-	it allow us to create a pool of threads.
-
-	+	newFixedThreadPool(number_of_threads)
++	An applet is a Java program that can be embedded into a web page. 
++	It runs inside the web browser and works at client side. 
++	An applet is embedded in an HTML page using the APPLET or OBJECT tag and hosted on a web server.
 
 
+JDBC
 
+project - 1
 
+Spring - Spring Core, Spring MVC, Spring Boot, Spring REST
+Hiberate
 
-[5] 24-Jan-2022
-
-
-							Java 8 Features
-							----------------
-1) DateTimeAPI		(java.time)
-	+	LocalDate
-	+	LocalTime
-	+	LocalDateTime
-
-		static methods:
-		+	now(), of(yy,mm,dd,hh,mi,ss), parse(string-form-date)
-
-
-	+	Period			(used to find the gap between two dates)
-		+	between()
-		
-	+	Duration		(used to find the gap between two times)
-
-	+	DateTimeFormatter
-
-
-
-accept a login time and logout time. print the work duration.
-
-
-
-
-2) Enhancements in interfaces:
-	+	default method
-	+	static method
-
-
-3) Functional interface:
-	+	When an interface contain only one abstract method, then it is said to be a functional interface.
-	+	@FunctionalInterface annotation can be used.
-
-	pre-defined functional interfaces:
-	1) Consumer	:	accept a parameter but do not return any value
-	2) Supplier	:	do not accept any parameter but return any value
-	3) Predicate
-	4) Function
-
-
-
-4) Lamdba 
-	+	It is meant for functional interface.
-
-	
-
-5) Stream
-	+	A Stream can be defined as a sequence of elements from a source. 
-	+	The source of elements may be a Collection or Array.
-	+	streams cannot store any data on it's own.
-
-
-	intermediate operations
-	1)	filter()
-	2) 	map()
-	3) 	sorted()
-
-
-	terminal operations
-	1) 	count()
-	2) 	sum()
-	
-
-
-6) Method Reference
+final project-2
 
 
 
@@ -1749,3 +1680,54 @@ accept a login time and logout time. print the work duration.
 
 
 
+
+
+
+
+						Initialization Blocks
+						---------------------
+
+Order of execution of Initialization blocks and constructor in Java:
+---------------------------------------------------------------------
+
++	Static initialization blocks will run whenever the class is loaded first time in JVM
++	Initialization blocks run in the same order in which they appear in the program.
++	Instance Initialization blocks are executed whenever the class is initialized and before constructors are invoked. They are typically placed above the constructors within braces.
+
+
+class Test {
+  
+    Test (int x)
+    {
+        System.out.println("ONE argument constructor");
+    }
+  
+    Test ()
+    {
+        System.out.println("No  argument constructor");
+    }
+  
+    static
+    {
+        System.out.println("1st static init");
+    }
+  
+    {
+        System.out.println("1st instance init");
+    }
+  
+    {
+        System.out.println("2nd instance init");
+    }
+  
+    static
+    {
+        System.out.println("2nd static init");
+    }
+  
+    public static void main(String[] args)
+    {
+        new Test ();
+        new Test (8);
+    }
+}

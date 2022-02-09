@@ -18,12 +18,12 @@ public class ExceptionApp1 {
 				System.out.println("Quotient = "+c);
 				c = a%b;
 				System.out.println("Remainder= "+c);
-			} catch(ArithmeticException excep) {
+			} catch(ArithmeticException excep) {				// unchecked
 				System.out.println("denominator cannot be 0 - cannot calculate quotient and remainder");
 			}
-		} catch(ArrayIndexOutOfBoundsException  excep) {
+		} catch(ArrayIndexOutOfBoundsException  excep) {		// unchecked
 			System.err.println("please give 2 inputs using command line");
-		} catch(NumberFormatException excep) {
+		} catch(NumberFormatException excep) {					// unchecked
 			System.err.println("both the inputs must be integers only");
 		} finally {
 			System.out.println("exception processing is done");

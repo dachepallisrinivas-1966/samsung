@@ -1245,7 +1245,7 @@ throw, throws
     
 note:
 ----- 
-+	we are not supposed to handle UnChecked Exceptions
++	we are not supposed to handle UnChecked Exceptions		(Coding Standards)
         we have to avoid these exceptions using a technique called "Defensive programming".
 
 
@@ -1256,7 +1256,7 @@ note:
 
 User Defined Exceptions:
 ------------------------
-1. create a class which should be derived from java.lang.Exception or java.lang.RuntimeException
+1. create a class which should be derived from java.lang.Exception (checked) or java.lang.RuntimeException (unchecked)
 2. write a constructor that takes a String parameter.
 3. call the super class constructor by passing this String to it.
 
@@ -1281,7 +1281,7 @@ a) multi-catch exception
 
     try {
 	    statement(s)
-    } catch (Exception-1   |  Exception-2  |  Exception-3    obj) {
+    } catch (Exception-1   | Exception-2  |  Exception-3    obj) {
 	    statement(s)
     }
 
@@ -1349,6 +1349,11 @@ a) declarations
 b) implementations
 c) algorithims
 
+Advantages of Collections:
++	Reduces programming effort 
++	Increases performance 
++	Provides interoperability 
+
 
 
 							<< Collection API Diagram >>
@@ -1415,7 +1420,7 @@ Set interface
 +	no index based operations are possible
 
 
-	+ HashSet class		:	uncertain order
+	+ HashSet class		:	order of retrieval is uncertain.
 	+ LinkedHashSet		:	insertion order
 	+ TreeSet		:	sorted order
 
@@ -1429,8 +1434,8 @@ Map interface
 +	key + value together known as "Entry".
 
 
-	+ HashMap
-	+ LinkedHashMap
+	+ HashMap		: order of retrieval is uncertain.
+	+ LinkedHashMap		: insertion order
 	+ TreeMap		: sorted order of key
 
 
@@ -1444,6 +1449,11 @@ java.util.Collections class:
 	b) binarySearch()
 	c) fill()
 
+
+Program-to-Interfaces:  (Coding Standard)
+----------------------------------------------
+
+	List<Integer> list = new ArrayList<>();
 
 java.lang.Comparable interface:
 ---------------------------------

@@ -1851,6 +1851,103 @@ eg:
 
 
 
+							JDBC 
+							----
+
+interface/abstract class				implementation classes
+				
+	abstract methods					implementation of abstract methods
+
+JDBC API	:	collection of interfaces, abstract class	(Java People - Sun Microsystems)
+
+	Oracle	→	Oracle JDBC Driver	→	implementation classes of JDBC API (java programs) 
+	MySQL	→	MySQL JDBC Driver	→	implementation classes of JDBC API
+	MS SQL Server →	MS SQL Server JDBC Driver →	implementation classes of JDBC API
+
+
+5 Steps:
+--------
+●	Register the driver class
+●	Creating connection
+●	Creating statement
+●	Executing queries
+●	Closing connection
+
+
+java.sql package: (part of JDBC API):
+-------------------------------------
+DriverManager class
++	getConnection(connectionStringUrl, username, password)
+Connection interface
++	Statement createStatement()
++	PreparedStatement prepareStatement(sql)
+Statement interface
++	int executeUpdate(sql)	: for INSERT / UPDATE / DELETE
++	executeQuery(sql)		: for SELECT
+PreparedStatement interface
++	int executeUpdate()	: for INSERT / UPDATE / DELETE
++	executeQuery()		: for SELECT
+CallableStatement interface
++	used to call stored procedure / stored functions  (PL/SQL)
+ResultSet interface
++	used to retrieve data
++	next()
+
+
+
+2 ways
++	download the jdbc driver from the database vendor website 
+	copy the jdbc driver into "lib" folder
+	add the jdbc driver to the build path
+	then start writing program
+
++	use Maven project
+	specify the required dependency entries in the configuration file (pom.xml)
+	then start writing program
+
+what is Maven?
++	It is a build tool
++	jar / war file (java archive file / web archive file) - deployment file
+
++	Maven maintain all libraries in it's Maven Central Repository
+	(mvnrepository.com)
+
+
+what is the difference between Statement and PreparedStatement?
+
+		Statement									PreparedStatement
+----------------------------------------------------------------------------------------------------------------------------------------------
+1) It is used when SQL query is to be executed only once.			It is used when SQL query is to be executed multiple times.
+
+2) You can not pass parameters at runtime.					You can pass parameters at runtime. (parameterized query)
+
+3) Performance is very low.							Performance is better because it uses pre-compiled queries.
+
+4) we can execute multiple sql commands using a single				we can execute only one sql command using a single 
+   Statement object.								PreparedStatement object
+
+
+Rowset interface:
+-------------------
+A RowSet is an object that encapsulates a set of rows from either java Database Connectivity (JDBC) result sets, with a 
+standard set of properties and an event notification mechanism.
+
+5 implementation classes:
+--------------------------
++	CachedRowSet
++	FilteredRowSet
+
++	WebRowSet
++	JDBCRowSet
++	JoinRowSet
+
+
+
+
+
+
+
+
 
 
 

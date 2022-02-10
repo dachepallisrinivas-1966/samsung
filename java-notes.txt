@@ -1674,18 +1674,8 @@ Hiberate
 
 final project-2
 
-
-
-
-
-
-
-
-
-
-
-						Initialization Blocks
-						---------------------
+							Initialization Blocks
+							---------------------
 
 Order of execution of Initialization blocks and constructor in Java:
 ---------------------------------------------------------------------
@@ -1731,3 +1721,69 @@ class Test {
         new Test (8);
     }
 }
+
+
+[4] 10-feb-2022
+
+								Assertions in Java
+								------------------
+
++	An assertion allows testing the correctness of any assumptions that have been made in the program. 
++	An assertion is achieved using the assert statement in Java. 
++	While executing assertion, it is believed to be true. If it fails, JVM throws an error named "AssertionError". 
++	It is mainly used for testing purposes during development. 
+
++	The assert statement is used with a Boolean expression and can be written in two different ways.
+
++	First way: 
+
+	+	assert expression;
+
++	Second way:  
+
+	+	assert expression1 : expression2;
+
+
+Why use Assertions?
+
++	Wherever a programmer wants to see if his/her assumptions are wrong or not. 
++	To make sure that an unreachable-looking code is actually unreachable.
++	To make sure that assumptions written in comments are right.
+
+
+Assertion Vs Normal Exception Handling?
+
++	Assertions are mainly used to check logically impossible situations. 
++	For example, they can be used to check the state a code expects before it starts running or 
+	the state after it finishes running. 
++	Unlike normal exception/error handling, assertions are generally disabled at run-time. 
+
+Where to use Assertions?  
+
++	Arguments to private methods. 
++	Private arguments are provided by the developer’s code only and 
+	the developer may want to check his/her assumptions about arguments.
++	Conditional cases.
++	Conditions at the beginning of any method.
+
+Where not to use Assertions?
+
++	Assertions should not be used to replace error messages
++	Assertions should not be used to check arguments in the public methods as 
+	they may be provided by the user. Error handling should be used to handle errors provided by users.
++	Assertions should not be used on command line arguments.
+
+
+legal access modifiers:
+--------------------------
+data members	:	default, private, protected, public, static, abstract, final
+methods		:	default, private, protected, public, static, abstract, final
+class		:	default, public, final, abstract, static
+
+Nested Classes:
+--------------- 
+1. Static member class
+2. Non-Static member class
+3. Method-local inner class
+4. Anonymous inner class
+

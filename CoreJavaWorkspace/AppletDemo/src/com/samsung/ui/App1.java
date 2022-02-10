@@ -8,9 +8,9 @@ import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 /*
-	<applet code="App1" width="300" height="300">
+ 	<applet code="App1" width="300" height="300">
 	</applet>
-*/
+ */
 public class App1 extends Applet implements ActionListener {
 	private Label lblName;
 	private TextField txtName;

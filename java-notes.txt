@@ -1612,10 +1612,12 @@ life cycle methods?
 other methods:
 wait()
 notify()
-sleep(milliseconds)
-suspend()
-yield()
-resume()
+notifyAll()
+sleep(milliseconds)	
+
+suspend()	:	outdated
+yield()		:	outdated
+resume()	:	outdated
 
 currentThread()
 setName()
@@ -1649,6 +1651,10 @@ synchronization?
 +	synchronized method
 +	synchronized block
 
+producer-consumer pattern:
+---------------------------
+
+
 
 								AWT
 							(Abstract Window Toolkit)
@@ -1669,8 +1675,10 @@ JDBC
 
 project - 1
 
-Spring - Spring Core, Spring MVC, Spring Boot, Spring REST
 Hiberate
+JPA
+
+Spring - Spring Core, Spring MVC, Spring Boot, Spring REST
 
 final project-2
 
@@ -1748,6 +1756,25 @@ Why use Assertions?
 
 +	Wherever a programmer wants to see if his/her assumptions are wrong or not. 
 +	To make sure that an unreachable-looking code is actually unreachable.
+
+	eg:
+	---
+	class Scrap {
+    		public static void main(String args[])
+    		{
+        		int a = 2;
+        		for (;;) {
+ 
+            		if (a == 2)
+            		{
+                		break;
+                		// it will never execute, so
+                		// same error will be there.
+                		System.out.println("I want to get printed");
+            		}
+        	}
+    	}
+
 +	To make sure that assumptions written in comments are right.
 
 
@@ -1786,4 +1813,45 @@ Nested Classes:
 2. Non-Static member class
 3. Method-local inner class
 4. Anonymous inner class
+
+
+
+enum:	(JDK 1.5)
+----------------------------
++	"enum" stands for "enumeration".
++	"enum" in java is a user data type that contain fixed set of constants.
++	it represent possible values of a property.
+
++	It can be used for day of the week (SUNDAY, MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY and SATURDAY) , 
++	directions (NORTH, SOUTH, EAST and WEST)
++	Season (WINTER, SPRING, SUMMER, FALL)
++	gender (MALE, FEMALE)   
+
++	The java enum constants are static and final implicitly. 
++	Java Enums can be thought of as classes that have fixed set of constants.
+
++	enum ensures type safety.
+
+assume we do not have enums?
+
+what could be the data type of gender? it depends on programmer.
+assume we want 1 to represent MALE and 0 to represent FEMALE. we can make gender as int. but the problem is the user can pass any integer, 
+which is not type-safe.
+assume we want "M" to represent MALE and "F" to represent FEMALE.. we can make gender as char. but the problem is the user 
+can pass any character, which is not again type-safe.
+assume we want "MALE" to represent MALE and "FEMALE" to represent FEMALE. we can make gender as string. but the user can pass any string.
+
+in case we use an "enum", which contain pre-defined set of values associated to it.
+
+eg:
+	public	enum	Gender {
+		MALE, FEMALE
+	}
+
+
+
+
+
+
+
 

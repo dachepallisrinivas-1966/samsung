@@ -1976,6 +1976,271 @@ EmployeeManagementApp
 
 
 
+							Java EE Frameworks
+							------------------
+Framework:
+	It is a platform that contain libraries, API, design patterns, standardized environment to run the programs.
+
+1) struts
+2) jsf
+3) hibernate
+4) spring
+
+							ORM     (Object Relational Mapping)
+							-----------------------------------
+
+    It is a framework or library that enables the automation of database operations, executions and implementations.
+
+
+Data Representation                         OOP                             RDBMS   
+....................................................................................................
+Entity Def                                  class                           Table
+Entity                                      object                          Row/Tuple
+Properties                                  field                           column/attribute
+Behaviours                                  method                          ---
+
+
+It is a Paradigm Mismatch.
+
+
+Has A Relationship (Aggregation)
+ Composition
+    an entity possess another entity        class Address {                 Employees
+    An Employee composes of an Address          String street;               empid,name,salary,street,city
+                                                String city;
+                                            }
+
+                                            class Employee {
+                                                Long empId;
+                                                String name;
+                                                Double salary;
+                                                Address address;
+                                            }
+
+                                            
+
+ Association
+    OneToOne                                class BankAccount {             BankAccount
+                                                String accNum;                 accNum,ifsc,bankName
+                                                String ifsc;
+                                                String bankName;
+                                                Employee holder;
+                                            }
+
+                                            class Employee{                 Employees
+                                                Long empId;                     empid,name,basic,accnum
+                                                String name;
+                                                Dobule basic;
+                                                BankAccount salAccount;
+                                            }
+
+    OneToMany                               class Department {              Depts
+    ManyToOne                                   Long deptId;                   deptId,title
+                                                String title;
+                                                Set<Employee> emps;
+                                            }
+
+                                            class Employee {                Employees
+                                                Long empId;                     empid,name,basic,deptid
+                                                String name;
+                                                Double basic;
+                                                Department dept;
+                                            }
+
+    ManyToMany                              class Employee {                Employees
+                                                Long empId;                     empid,name,basic
+                                                String name;
+                                                Double basic;
+                                                Set<Project> projects;
+                                            }     
+
+                                            class Project {                 Projects
+                                                Long projectId;                 prjId,title
+                                                String projectTitle;
+                                                Set<Employee> team;
+                                            }
+                                                                            Prj_Emps
+                                                                                prjid,empid
+
+
+
+                                            class Employee {                Employees
+                                                Long empId;                     empid,name,basic
+                                                String name;
+                                                Double basic;
+                                                @OneToMany
+                                                Set<TeamMembership> projects;
+                                            }     
+
+                                            class Project {                 Projects
+                                                Long projectId;                 prjId,title
+                                                String projectTitle;
+                                                @OneToMany
+                                                Set<TeamMembership> team;
+                                            }
+                                            
+                                            class TeamMembership {          Memeberships
+                                                Long membershipId;              msid,empId,prId,role
+                                                @ManyToOne
+                                                Employee member;
+                                                @ManyToOne
+                                                Project project;
+                                                String role;
+                                            }
+
+
+Is A Relationships (Realization)            class Employee {                
+                                                Long empId;                   
+                                                String name;
+                                                Double basic;
+                                            }
+
+                                            class Manager extends Employee{
+                                                Double allowance;
+                                            }
+
+                                            class ContractEmployee extends Employee {
+                                                Integer duration;
+                                            }
+
+												Inheritance Strategies
+                                                       Single Table       AllEmployees
+                                                                             empid,name,basic,allowance,duration,emp_type (discriminator column)
+
+                                                       Join Table           Emps    empid(PK),name,basic
+                                                                            Mgrs    empid(PK FK),allowence
+                                                                            cemps   empid(PK FK),duration
+                                                                            
+                                                       Table Per Class      Emps    empid(PK),name,basic
+                                                                            Mgrs    empid(PK),name,basic,allow
+                                                                            cemps   empid(PK),name,basic,duration
+
+
+Proposal	→	Specifications		→	Implementation
+(ORM)			(JPA & JTA)			(Hibernate)
+
+
+	
+JPA - Java Persistence API + (JTA - Java Transaction API)
+-----------------------------------------------------------
+
+    JPA and JTA are JavaEE specifications to provide the ORM for java applications.
+
+    JPA / JTA implementations / JPA or JTA Providers
+        1. Hibernate
+        2. TopLink
+	3. EclipseLink
+        4. ibatis
+	5. mybatis ...etc
+
+    1. Entity Mapping
+
+            @Entity                 class level     configs that a class is an entity
+            @Embeddable             class level     configs that a class is a part of an entity
+
+            @Table(name="")         class level     map the entity class with a table
+
+            @Inheritence            class level     config the Is A type 
+                                                    Inheritance Strategies ►	(Single table/join table/table per class)
+           
+	    @DiscriminatorColumn    class level	    eg: emp_type
+            @DiscriminatorValue     class level
+
+            @Embeded                Field level     config that a field is a embedable object (composition)
+
+            @Id                     Field level     config a field as primary key
+            @EmbededId              Field level     config a field as a composite key
+
+            @GeneratedValue         Field level     used along with @Id
+						    generation strategies
+                                                        AUTO            the best strategy is choosen by hibernate
+                                                        IDENTITY        SQL Server/MySQL PK as identity col
+                                                        SEQUENCE        oracle 12c or higher sequence
+							TABLE		hibernate_sequences table
+
+            @Column                 Field level     is an optional annotation on each field
+                                                    configs column name,nullable, unique ..etc
+                                                    if a field is not marked with @column annotation, then
+                                                    that field is mapped to a colmun having the smae name as 
+                                                    that of the field.
+
+            @Transient              Field level     config that a field need not be persisted in the db table.
+
+            @OneToOne               Field level
+            @OneToMany              Field level
+            @ManyToOne              Field level
+            @ManyToMany             Field level
+
+                    mappedBy                        configs the name of the field of 
+                                                    the entity on the oppsite side of the relation
+                    fetechStrategy                  LAZY | EAGER
+                    cascade                         ALL | PERSIST | MERGE | DELETE | NONE | REFERESH | ORPHAN
+
+            @JoinColumn             Field level     config a name to the foreign key col
+            @JoinTable              Field level     configs a thrid talbe for relatiosn incase of ManyToMany
+
+
+Session methods:
+1) save()
+2) update()
+3) delete()
+4) get()
+5) saveOrUpdate()
+6) load()
+
+
+what is the difference between get() and load()?
+???
+
+
+what is dialect?
+???
+
+
+5 Heros of hibernate:
+1) ConnectionProvider
+2) SessionFactory
+3) Session
+4) TransactionFactory
+5) Transaction
+
+orm mapping can be done in two ways.
+1) using .hbm.xml files	(eg: job.hbm.xml)	
+2) using annotations
+
+
+
+
+
+HQL	(Hibernate Query Language)
+	HQL is all about using entity class and thier properties
+	We don't use table names, column names while querying data unlike in SQL.
+
+
+
+
+
+    
+
+hibernate.cfg.xml
+	session factory settings
+		database name
+		connection string url
+		user name
+		password
+		jdbc driver information
+
+		hibernate environment information
+
+
+mapping information
+1) using xml
+	entityClassName.hbm.xml
+	you have to register mapping information in hibernate.cfg.xml
+
+2) using property files		(external configuration)
+
+3) using annotations		(recommended)
 
 
 

@@ -1671,16 +1671,7 @@ to develop windows based application (GUI)
 +	An applet is embedded in an HTML page using the APPLET or OBJECT tag and hosted on a web server.
 
 
-JDBC
 
-project - 1
-
-Hiberate
-JPA
-
-Spring - Spring Core, Spring MVC, Spring Boot, Spring REST
-
-final project-2
 
 							Initialization Blocks
 							---------------------
@@ -1942,8 +1933,84 @@ standard set of properties and an event notification mechanism.
 +	JoinRowSet
 
 
+11-feb-2022
+
+project - 1:	Library Management System
+		-------------------------
+Console Based Application
+Java SE + Oracle + Maven
+Multi Layered Architecture
++	presentation layer (UI Layer)
+	+	is the layer through which the user is interacted with the application
++	business layer	   (Service Layer)
+	+	to implement validations, computations, to call data access layer's methods
++	data access layer  (DAO Layer)
+	+	to talk to the database, all database operations
+
+design patterns:
++	DAO (Data Access Object) design pattern	
++	Program-to-interfaces
++	Single ton design pattern
+	+ we have only one object can be created for a class.
 
 
+
+ create table books
+  2  (bcode number(4) primary key,
+  3  title varchar(50) not null,
+  4  price number(10,2) not null,
+  5  category varchar(50) not null
+  6  );
+
+
+
+UI	↔	Service		↔	DAO	↔	Database
+
+
+
+project-2:
+----------
+EmployeeManagementApp
+	empId, empName, mobile, salary
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Hiberate
+JPA
+
+Spring - Spring Core, Spring MVC, Spring Boot, Spring REST
+
+final project-2
 
 
 

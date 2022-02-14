@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -32,6 +33,10 @@ public class Employee implements Serializable {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "account_number")
 	private Account salaryAccount;
+	
+	@ManyToOne
+	@JoinColumn(name = "dept_id")
+	private Department department;
 	
 	public Employee() {
 		/* default constructor */
@@ -74,6 +79,14 @@ public class Employee implements Serializable {
 
 	public void setSalaryAccount(Account salaryAccount) {
 		this.salaryAccount = salaryAccount;
+	}
+	
+	public Department getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(Department department) {
+		this.department = department;
 	}
 
 	@Override

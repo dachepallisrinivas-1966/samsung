@@ -2250,6 +2250,31 @@ mapping information
 
 
 
+			JPA									Hibernate
+-------------------------------------------------------------------------------------------------------------------------------
+1) JPA is described in javax.persistence package.			Hibernate is described in org.hibernate package.
+
+2) It describes the handling of relational data 			Hibernate is an Object-Relational Mapping (ORM) tool that 
+   in Java applications.                                   		is used to save the Java objects in the relational database system.                                    	
+
+3) It is not an implementation. It is only a Java specification.	Hibernate is an implementation of JPA. Hence, the common standard 
+									which is given by JPA is followed by Hibernate.
+
+4) It is a standard API that permits to perform database operations.	It is used in mapping Java data types with SQL data types and 
+									database tables.
+
+5) As an object-oriented query language, it uses Java Persistence 	As an object-oriented query language, it uses Hibernate Query Language 
+   Query Language (JPQL) to execute database operations.		(HQL) to execute database operations.
+
+6) To interconnect with the entity manager factory for the 		To create Session instances, it uses SessionFactory interface.
+   persistence unit, it uses EntityManagerFactory interface. Thus, 
+   it gives an entity manager.
+
+
+7) To make, read, and remove actions for instances of mapped 		To make, read, and remove actions for instances of mapped entity 
+   entity classes, it uses EntityManager interface. 			classes, it uses Session interface. It acts as a runtime 
+   This interface interconnects with the persistence condition.		interface between a Java application and Hibernate.
+
 
 	
 

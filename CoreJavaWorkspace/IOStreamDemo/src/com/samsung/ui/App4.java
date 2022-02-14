@@ -22,6 +22,8 @@ public class App4 {
 			System.out.println("no such file present");
 		} catch(IOException excep) {
 			System.out.println("file cannot be read");
+		} finally {
+			scanner.close();
 		}
 
 	}

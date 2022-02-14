@@ -1505,8 +1505,8 @@ what is the contract between equals() and hashCode() ?
 
 
 
-							IOStreams (java.io)
-							-------------------
+							IOStream API (java.io)
+							----------------------
 stream : flow of data.
 
 iostreams are used to store the data permanantly (in the form of files)
@@ -2173,7 +2173,7 @@ JPA - Java Persistence API + (JTA - Java Transaction API)
 
                     mappedBy                        configs the name of the field of 
                                                     the entity on the oppsite side of the relation
-                    fetechStrategy                  LAZY | EAGER
+                    fetchStrategy                  LAZY | EAGER
                     cascade                         ALL | PERSIST | MERGE | DELETE | NONE | REFERESH | ORPHAN
 
             @JoinColumn             Field level     config a name to the foreign key col
@@ -2204,6 +2204,10 @@ what is dialect?
 4) TransactionFactory
 5) Transaction
 
+
+6) TypedQuery
+
+
 orm mapping can be done in two ways.
 1) using .hbm.xml files	(eg: job.hbm.xml)	
 2) using annotations
@@ -2232,6 +2236,8 @@ hibernate.cfg.xml
 
 		hibernate environment information
 
+	hbm2ddl.auto	→	update / validate / create / create-drop
+
 
 mapping information
 1) using xml
@@ -2245,6 +2251,7 @@ mapping information
 
 
 
+	
 
 
 

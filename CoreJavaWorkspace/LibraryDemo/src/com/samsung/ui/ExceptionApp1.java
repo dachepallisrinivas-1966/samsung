@@ -28,7 +28,6 @@ public class ExceptionApp1 {
 		} finally {
 			System.out.println("exception processing is done");
 		}
-
 	}
 
 }

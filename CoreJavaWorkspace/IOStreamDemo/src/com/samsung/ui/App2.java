@@ -17,14 +17,13 @@ public class App2 {
 			while ((ch = fr.read()) != -1) {
 				System.out.print((char)ch);
 			}
-			
-			scanner.close();
-
 		} catch(FileNotFoundException excep) {
 			System.out.println("no such file available");
 		} catch(IOException excep) {
 			System.out.println("cannot read file");
-		} 
+		} finally {
+			scanner.close();
+		}
 	}
 
 }

@@ -22,12 +22,14 @@ public class App3 {
 					break;
 				System.out.println(line);
 			}
-			scanner.close();
+			
 		} catch (FileNotFoundException excep) {
 			System.out.println("No such file present.");
 		} catch(IOException excep) {
 			System.out.println("Could not read file.");
-		} 
+		} finally {
+			scanner.close();
+		}
 
 	}
 

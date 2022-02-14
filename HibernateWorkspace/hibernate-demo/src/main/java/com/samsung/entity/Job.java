@@ -7,9 +7,14 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
+
 
 @Entity
 @Table(name = "jobs")
+@DynamicInsert
+@DynamicUpdate
 public class Job implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -28,7 +33,6 @@ public class Job implements Serializable {
 	}
 
 	public Job(String jobId, String jobTitle, Integer minSalary, Integer maxSalary) {
-		super();
 		this.jobId = jobId;
 		this.jobTitle = jobTitle;
 		this.minSalary = minSalary;

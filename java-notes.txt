@@ -2276,7 +2276,51 @@ mapping information
    This interface interconnects with the persistence condition.		interface between a Java application and Hibernate.
 
 
-	
+					
+
+
+								Cacheing
+
+Caching is a facility provided by ORM frameworks which help users to get fast running web application, while help framework itself 
+to reduce number of queries made to database in a single transaction. Hibernate achieves the second goal by implementing first level cache.
+
+Fist level cache in hibernate is enabled by default and you do not need to do anything to get this functionality 
+working. In fact, you can not disable it even forcefully.
+
+Its easy to understand the first level cache if we understand the fact that it is associated with Session object. As we know 
+session object is created on demand from session factory and it is lost, once the session is closed. Similarly, 
+first level cache associated with session object is available only till session object is live. It is available to session object 
+only and is not accessible to any other session object in any other part of application.
+
+
+
+Important facts
+First level cache is associated with “session” object and other session objects in application can not see it.
+The scope of cache objects is of session. Once session is closed, cached objects are gone forever.
+First level cache is enabled by default and you can not disable it.
+When we query an entity first time, it is retrieved from database and stored in first level cache associated with hibernate session.
+If we query same object again with same session object, it will be loaded from cache and no sql query will be executed.
+The loaded entity can be removed from session using evict() method. The next loading of this entity will again make a database call if it has been removed using evict() method.
+The whole session cache can be removed using clear() method. It will remove all the entities stored in cache.
+
+
+
+First level cache retrieval example
+
+//Open the hibernate session
+Session session = HibernateUtil.getSessionFactory().openSession();
+session.beginTransaction();
+ 
+//fetch the department entity from database first time
+DepartmentEntity department = (DepartmentEntity) session.load(DepartmentEntity.class, new Integer(1));
+System.out.println(department.getName());
+ 
+//fetch the department entity again
+department = (DepartmentEntity) session.load(DepartmentEntity.class, new Integer(1));
+System.out.println(department.getName());
+ 
+session.getTransaction().commit();
+HibernateUtil.shutdown();
 
 
 
@@ -2297,13 +2341,6 @@ mapping information
 
 
 
-
-
-
-
-
-Hiberate
-JPA
 
 Spring - Spring Core, Spring MVC, Spring Boot, Spring REST
 

@@ -13,7 +13,10 @@ public class App1 {
 		
 		MessageProcessor obj = context.getBean("messageProcessor", MessageProcessorImpl.class);
 		obj.processMsg("last date for payment of eleceticity bill is today : check your email account");
-
+		
+		MessageProcessor obj2 = context.getBean("messageProcessor", MessageProcessorImpl.class);
+		obj2.processMsg("last date for payment of eleceticity bill is today : check your email account");
+		
 		context.close();
 	}
 

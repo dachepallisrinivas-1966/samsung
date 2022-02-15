@@ -12,6 +12,10 @@ public class App1 {
 		AbstractApplicationContext context = new AnnotationConfigApplicationContext(AppConfiguration.class);
 		UserService  userService = context.getBean(UserService.class);
 		userService.processMsg("sms message sending ");
+		UserService  userService2 = context.getBean(UserService.class);
+		userService2.processMsg("sms message sending ");
+		System.out.println(userService == userService2);
+		context.close();
 
 	}
 

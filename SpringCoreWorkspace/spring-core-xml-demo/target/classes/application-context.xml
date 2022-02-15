@@ -7,7 +7,7 @@
 	
 	<bean id="emailService" class="com.samsung.service.EmailService"></bean>
 	
-	<bean id="messageProcessor" class="com.samsung.service.MessageProcessorImpl">
+	<bean id="messageProcessor" class="com.samsung.service.MessageProcessorImpl" scope="prototype">
 		<property name="messageService" ref="emailService"></property>
 	</bean>
 </beans>

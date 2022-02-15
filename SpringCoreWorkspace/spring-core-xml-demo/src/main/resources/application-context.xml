@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="twitterService" class="com.samsung.service.TwitterService"></bean>
+	
+	<bean id="emailService" class="com.samsung.service.EmailService"></bean>
+	
+	<bean id="messageProcessor" class="com.samsung.service.MessageProcessorImpl">
+		<property name="messageService" ref="emailService"></property>
+	</bean>
+</beans>

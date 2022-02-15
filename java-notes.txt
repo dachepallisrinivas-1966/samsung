@@ -2221,11 +2221,6 @@ HQL	(Hibernate Query Language)
 	We don't use table names, column names while querying data unlike in SQL.
 
 
-
-
-
-    
-
 hibernate.cfg.xml
 	session factory settings
 		database name
@@ -2276,51 +2271,35 @@ mapping information
    This interface interconnects with the persistence condition.		interface between a Java application and Hibernate.
 
 
-					
+								Criteria API
+								------------
+what is the difference between using HQL and Criteria API?
+???
 
 
-								Cacheing
+								Caching
+								-------
 
 Caching is a facility provided by ORM frameworks which help users to get fast running web application, while help framework itself 
 to reduce number of queries made to database in a single transaction. Hibernate achieves the second goal by implementing first level cache.
 
-Fist level cache in hibernate is enabled by default and you do not need to do anything to get this functionality 
-working. In fact, you can not disable it even forcefully.
-
 Its easy to understand the first level cache if we understand the fact that it is associated with Session object. As we know 
 session object is created on demand from session factory and it is lost, once the session is closed. Similarly, 
-first level cache associated with session object is available only till session object is live. It is available to session object 
-only and is not accessible to any other session object in any other part of application.
+first level cache associated with session object is available only till session object is live. 
 
 
+Important facts:
++	First level cache is associated with “session” object and other session objects in application can not see it.
 
-Important facts
-First level cache is associated with “session” object and other session objects in application can not see it.
-The scope of cache objects is of session. Once session is closed, cached objects are gone forever.
-First level cache is enabled by default and you can not disable it.
-When we query an entity first time, it is retrieved from database and stored in first level cache associated with hibernate session.
-If we query same object again with same session object, it will be loaded from cache and no sql query will be executed.
-The loaded entity can be removed from session using evict() method. The next loading of this entity will again make a database call if it has been removed using evict() method.
-The whole session cache can be removed using clear() method. It will remove all the entities stored in cache.
++	First level cache is enabled by default and you can not disable it.
 
++	When we query an entity first time, it is retrieved from database and stored in first level cache associated with hibernate session.
 
++	If we query same object again with same session object, it will be loaded from cache and no sql query will be executed.
 
-First level cache retrieval example
++	The loaded entity can be removed from session using evict() method. The next loading of this entity will again make a database call if it has been removed using evict() method.
 
-//Open the hibernate session
-Session session = HibernateUtil.getSessionFactory().openSession();
-session.beginTransaction();
- 
-//fetch the department entity from database first time
-DepartmentEntity department = (DepartmentEntity) session.load(DepartmentEntity.class, new Integer(1));
-System.out.println(department.getName());
- 
-//fetch the department entity again
-department = (DepartmentEntity) session.load(DepartmentEntity.class, new Integer(1));
-System.out.println(department.getName());
- 
-session.getTransaction().commit();
-HibernateUtil.shutdown();
++	The whole session cache can be removed using clear() method. It will remove all the entities stored in cache.
 
 
 
@@ -2328,6 +2307,132 @@ HibernateUtil.shutdown();
 
 
 
+								Spring Framework
+								----------------
+
++	The Spring Framework provides a comprehensive programming and configuration model for modern 
+	Java-based enterprise applications.
+
++	A key element of Spring is infrastructural support at the application level: Spring focuses on the "plumbing" of 
+	enterprise applications so that teams can focus on application-level business logic, without unnecessary ties to 
+	specific deployment environments.
+
+
+What is the Spring Container?
++	The Spring container is also known as IoC (Inversion of Control) container. 
++	The Spring container is responsible for instantiating, configuring, and assembling the Spring beans. 
++	The container gets its instructions on what objects to instantiate, configure, and assemble by reading configuration metadata. 
++	The configuration metadata is represented in XML, Java annotations, or Java code with annotations
+
+
+The responsibilities of IOC container are:
++	Instantiating the bean
++	Wiring the beans together
++	Configuring the beans
++	Managing the bean’s entire life-cycle
+
+The org.springframework.beans and org.springframework.context packages are the basis for Spring Framework’s IoC container. 
+Spring framework provides two distinct types of containers.
++	BeanFactory container
++	ApplicationContext container
+
++	BeanFactory is the root interface of Spring IOC container. 
++	ApplicationContext interace is the child interface of BeanFactory interface that provides Spring AOP features, i18n etc.
+
++	One main difference between BeanFactory and ApplicationContext is that ...
+	+	BeanFactory only instantiates bean when we call getBean() method 
+	+	while ApplicationContext instantiates singleton bean when the container is started, It doesn't wait 
+		for getBean() method to be called.
+
+
+How to Create a Spring Container?
++	Spring provides many ApplicationContext interface implementations that we use are;		
+
+	+	AnnotationConfigApplicationContext: If we are using Spring in standalone Java applications and using annotations 
+			for Configuration, then we can use this to initialize the container and get the bean objects.
+
+	+	ClassPathXmlApplicationContext: If we have spring bean configuration XML file in a standalone application, then we 
+			can use this class to load the file and get the container object. XML file should be available in the
+			class path.
+
+	+	FileSystemXmlApplicationContext: This is similar to ClassPathXmlApplicationContext except that the XML configuration 
+			file can be loaded from anywhere in the file system.
+
+
+Difference Between BeanFactory vs ApplicationContext in Spring?
++	The BeanFactory interface
+	+	use lazy loading, which means that Beans are only instantiating when we directly calling them through the getBean() method.
+	+	The most used implementation of the BeanFactory interface is the XmlBeanFactory class.  
+
+		eg:
+			XmlBeanFactory factory = new XmlBeanFactory (new ClassPathResource("applicationContext.xml"));
+
+
++	The ApplicationContext interface
+
+	+	The ApplicationContext is the central interface within a Spring application for providing configuration information 
+		to the application.
+	+	It implements the BeanFactory interface. Hence ApplicationContext includes all functionality of the BeanFactory and 
+		much more!
+
+	Features:
+	+	Bean instantiation/wiring
+	+	Automatic BeanPostProcessor registration
+	+	Automatic BeanFactoryPostProcessor registration
+	+	Convenient MessageSource access (for i18n)
+	+	ApplicationEvent publication
+	+	Uses eager loading, so every bean instantiate after the ApplicationContext started up.
+
+
+
+
+Spring Dependency Injection 
+
++	Dependency injection (DI) is a process whereby objects define their dependencies, that is, the other objects they work with, 
+	only through constructor arguments, arguments to a factory method, or properties that are set on the object instance after it is 
+	constructed or returned from a factory method. 
++	The container then injects those dependencies when it creates the bean. 
+
++	This process is fundamentally the inverse, hence the name Inversion of Control (IoC), of the bean itself controlling the 
+	instantiation or location of its dependencies on its own by using direct construction of classes, or the Service Locator pattern.
+
++	The Spring Framework Inversion of Control (IoC) component is the nucleus of the framework. It uses dependency injection to 
+	assemble Spring-provided (also called infrastructure components) and development-provided components in order to rapidly wrap 
+	up an application.
+
+Advantages of Dependency Injection
++	Decoupling: Code is cleaner with the DI principle and decoupling is more effective when objects are provided with 
+	their dependencies.
++	Easier to test: As such, your classes become easier to test, in particular when the dependencies are on interfaces or
+	abstract base classes, which allow for stub or mock implementations to be used in unit tests.
+
+Types of Dependency Injection
++	Constructor-based dependency injection
++	Setter-based dependency injection.
+
+
+
+
+1) single ton
+2) dao
+3) factory design pattern
+4) service locator (program-to-interfaces)
+
+
+
+annotations:
+---------------
+stereo type annotations:
+	@Component
+	+	@Service
+	+	@Repository
+	+	@Controller
+	+	@Configuration
+
+Auto wiring	:	to inject other beans (dependency injection)
+	i) by name	(it uses bean name or object name to detect the dependent bean - @Qualifier)
+	ii) by type	(it uses class name to detect the dependent bean
+	iii) constructor
 
 
 
@@ -2337,12 +2442,8 @@ HibernateUtil.shutdown();
 
 
 
+Spring - Spring Core, Spring MVC, Spring Boot, Spring REST, Spring Boot
 
-
-
-
-
-Spring - Spring Core, Spring MVC, Spring Boot, Spring REST
 
 final project-2
 

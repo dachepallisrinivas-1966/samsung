@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd">
+  
+  	<bean id="acc2" class="com.samsung.bean.Account">
+  		<!-- constructor injection -->
+		<constructor-arg name="accountNumber" value="1002" />
+		<constructor-arg name="bank" value="Canara" />
+		<constructor-arg name="branch" value="Pune" />
+	</bean>     
+           
+	<bean id="emp" class="com.samsung.bean.Employee">
+	
+		<!-- property (setter) injection -->
+		<property name="empId" value="101" />
+		<property name="name" value="Sourav" />
+		<property name="salary" value="15000.0" />
+		
+		<!-- array injection -->
+		<property name="hobbies">
+			<array>
+				<value>chess</value>
+				<value>book reading</value>
+				<value>watching tv</value>
+			</array>
+		</property>
+		
+		<!-- collection injection -->
+		
+		<property name="skills">
+			<list>
+				<value>welding</value>
+				<value>painting</value>
+				<value>tinkering</value>
+			</list>
+		</property>
+		
+		<property name="qualifications">
+			<set>
+				<value>mba</value>
+				<value>m.tech</value>
+				<value>b.tech</value>
+			</set>
+		</property>
+		
+		<property name="contacts">
+			<map>
+				<entry>
+					<key>
+						<value>Ramesh</value>
+					</key>
+					<value>9248212540</value>
+				</entry>
+				
+				<entry>
+					<key>
+						<value>Kiran</value>
+					</key>
+					<value>92472345640</value>
+				</entry>
+			</map>
+		</property>
+		
+		<!-- dependency injection -->
+		
+		<property name="salaryAccount" ref="acc2" />		
+	</bean> 
+	
+	
+	<!-- constructor injection -->
+	  <bean id="emp3" class="com.samsung.bean.Employee">
+		<constructor-arg name="empId" value="301" />
+		<constructor-arg name="salary" value="15900.0" />
+		<constructor-arg name="name" value="Alok" />
+		<constructor-arg name="salaryAccount">		
+			<!-- inner bean injection -->
+			<bean id="acc1" class="com.samsung.bean.Account">
+				<constructor-arg name="accountNumber" value="1001" />
+				<constructor-arg name="bank" value="SBI" />
+				<constructor-arg name="branch" value="Mumbai" />
+			</bean>
+		</constructor-arg>
+	</bean> 
+	
+
+           
+</beans>

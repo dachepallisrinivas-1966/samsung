@@ -2456,31 +2456,27 @@ if you use xml based configuration, we have to use init-method = "init()", destr
 								Spring AOP 
 								----------
 
-AOP is a programming paradigm that aims to increase modularity by allowing the separation of cross-cutting concerns. 
-It does so by adding additional behavior to existing code without modification of the code itself. Instead, we declare 
-separately which code is to modify.
+AOP stands for Aspect Oriented Programming.
 
-What is a cross-cutting concern?
-+	A cross-cutting concern is a functionality that is tangled with business code, which usually cannot be separated from 
-	the business logic. 
-+	Auditing, security, and transaction management are good examples of cross-cutting concerns. 
-+	They are mingled with the business code, heavily coupled with the functionality that might be affected if they fail. 
-+	you can imagine aspects as plugins. They modify the behaviour, not the actual implementation.
+An aspect is a domain independent cross cutting concern or operation that can used across our application.
+	Like 
+                logging
+                transaction management
+                security (authentication and authorization) ...etc
 
-Below diagram shows how the concerns like logging, security, and transaction management are cutting across different layers here:
 
-(diagram)
+we can configure the aspects to execute after or before or around a regular bussienss logic by still keeping them isolated.
 
-Examples of cross-cutting concerns:
-+	Logging
-+	Security
-+	Transaction management
-+	Auditing,
-+	Caching
-+	Internationalization
-+	Error detection and correction
-+	Memory management
-+	Performance monitoring
+the cross-cutting concern to be executed is called ASPECT.
+
+and the actual bussiness logic by reference to whch an aspect has to exeucte is called JOIN POINT.
+
+to let the ASPECT know the JOIN POINT, the POINT CUT is used.
+
+
+PointCut:
+------------------------
+    "execution(* packageName.ClassName.methodName(..))"
 
 
 AspectJ:
@@ -2489,70 +2485,24 @@ AspectJ:
 +	It was developed by the Xerox PARC company and released in 1995. 
 +	It defined a standard for AOP because of its simplicity and usability.
 
+   
+   
+AspectJ Annotations
+-------------------------
+@EnableAspectJAutoProxy
+@Aspect - Represents an aspect advice class.
+@Before – Run before the method execution
+@After – Run after the method returned a result
+@AfterReturning – Run after the method returned a result, intercept the returned result as well.
+@AfterThrowing – Run after the method throws an exception
+@Around – Run around the method execution, combine all three advices above.
+    
+    
 
 
-Spring - Spring Core, Spring MVC, Spring Boot, Spring REST, Spring Boot
 
-
+Spring - Spring Core, Spring AOP, Spring MVC, Spring Boot, Spring REST
 final project-2
-
-
-
-Aspect Oriented Programming
-
-    An aspect is a domain independent cross cutting concern or operation
-    that can used across our application.
-
-        Like 
-                logging
-                transaction management
-                security (authentication and authorization) ...etc
-
-    we can configuarwe the aspects to execute after or before or around a regular bussienss logic
-    by still keeping them isolated.
-
-
-    the cross-cutting concern tobe executed is called ASPECT
-    and the actual bussiness logic by reference to whcihan aspect has to exeucte is calle JOIN POINT
-    to let the ASPECT know the JOIN POIINt, the POINT CUT is used.
-
-    PointCut
-    ------------------------
-    "execution(* packageName.ClassName.methodName(..))"
-    
-    AspectJ Annotations
-    -------------------------
-    @EnableAspectJAutoProxy
-    @Aspect - Represents an aspect advice class.
-    @Before – Run before the method execution
-    @After – Run after the method returned a result
-    @AfterReturning – Run after the method returned a result, intercept the returned result as well.
-    @AfterThrowing – Run after the method throws an exception
-    @Around – Run around the method execution, combine all three advices above.
-    
-    
-    <dependency>
-        <groupId>org.springframework</groupId>
-        <artifactId>spring-aop</artifactId>
-        <version>${spring.version}</version>
-    </dependency>
-
-    <dependency>
-        <groupId>org.aspectj</groupId>
-        <artifactId>aspectjrt</artifactId>
-
-
-        <version>1.6.11</version>
-    </dependency>
-    
-    <dependency>
-        <groupId>org.aspectj</groupId>
-        <artifactId>aspectjweaver</artifactId>
-        <version>1.6.11</version>
-    </dependency>
-
-
-
 
 
 

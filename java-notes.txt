@@ -2490,332 +2490,6 @@ AspectJ:
 +	It defined a standard for AOP because of its simplicity and usability.
 
 
-AOP Concepts and Terminology:
------------------------------
-Unfortunately, AOP terminology is not very intuitive so I will start with creating an example application and then relate the terminology with usage in the example.
-Spring AOP + AspectJ Example
-Let's quickly create a spring boot application with spring AOP.
-There are many ways to create a Spring Boot application. You can refer to the below articles to create a Spring Boot application.
-
-
-
-Let's add Spring AOP starter to maven project pom.xml:
-<?xml version="1.0" encoding="UTF-8"?>
-<project
-    xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <groupId>net.guides.springboot2</groupId>
-    <artifactId>springboot2-springaop-example</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <packaging>jar</packaging>
-    <name>springboot2-springaop-example</name>
-    <description>Demo project for Spring Boot</description>
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.1.4.RELEASE</version>
-        <relativePath />
-        <!-- lookup parent from repository -->
-    </parent>
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>1.8</java.version>
-    </properties>
-    <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-aop</artifactId>
-        </dependency>
-    </dependencies>
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
-</project>
-Employee.java
-Create a simple Employee POJO class (You can use it as a JPA entity for database operations):
-package net.guides.springboot2.springaop.model;
-
-public class Employee {
-
-    private long id;
-    private String firstName;
-    private String lastName;
-    private String emailId;
-
-    public Employee() {
-
-    }
-
-    public Employee(long id, String firstName, String lastName, String emailId) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.emailId = emailId;
-    }
-
-    public long getId() {
-        return id;
-    }
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getEmailId() {
-        return emailId;
-    }
-    public void setEmailId(String emailId) {
-        this.emailId = emailId;
-    }
-
-    @Override
-    public String toString() {
-        return "Employee [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", emailId=" + emailId +
-            "]";
-    }
-}
-EmployeeService.java
-To keep it simple, I will create an EmployeeService and manage in-memory objects:
-package net.guides.springboot2.springaop.service;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import org.springframework.stereotype.Service;
-
-import net.guides.springboot2.springaop.model.Employee;
-
-/**
- * Employee Service
- * 
- * @author Ramesh
- *
- */
-@Service
-public class EmployeeService {
-
-    private List < Employee > employees = new ArrayList < > ();
-
-    public List < Employee > getAllEmployees() {
-        System.out.println("Method getAllEmployees() called");
-        return employees;
-    }
-
-    public Employee getEmployeeById(Long employeeId) {
-        System.out.println("Method getEmployeeById() called");
-        for (Employee employee: employees) {
-            if (employee.getId() == Long.valueOf(employeeId)) {
-                return employee;
-            }
-        }
-        return null;
-    }
-
-    public void addEmployee(Employee employee) {
-        System.out.println("Method addEmployee() called");
-        employees.add(employee);
-    }
-
-    public void updateEmployee(Employee employeeDetails) {
-        System.out.println("Method updateEmployee() called");
-        for (Employee employee: employees) {
-            if (employee.getId() == Long.valueOf(employeeDetails.getId())) {
-                employees.remove(employee);
-                employees.add(employeeDetails);
-            }
-        }
-    }
-
-    public void deleteEmployee(Long employeeId) {
-        System.out.println("Method deleteEmployee() called");
-        for (Employee employee: employees) {
-            if (employee.getId() == Long.valueOf(employeeId)) {
-                employees.remove(employee);
-            }
-        }
-    }
-}
-LoggingAspect.java
-Now, let's create a LogginAspect class:
-package net.guides.springboot2.springaop.aspect;
-
-import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.After;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
-
-/**
- * Aspect for logging execution.
- * 
- * @author Ramesh Fadatare
- *
- */
-@Aspect
-@Component
-public class LoggingAspect {
-
-    private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
-
-    @Before("execution(* net.guides.springboot2.springaop.service.EmployeeService.*(..))")
-    public void logBeforeAllMethods(JoinPoint joinPoint) {
-  LOGGER.debug("****LoggingAspect.logBeforeAllMethods() : " + joinPoint.getSignature().getName());
-    }
-
-    @Before("execution(* net.guides.springboot2.springaop.service.EmployeeService.getEmployeeById(..))")
-    public void logBeforeGetEmployee(JoinPoint joinPoint) {
-  LOGGER.debug("****LoggingAspect.logBeforeGetEmployee() : " + joinPoint.getSignature().getName());
-    }
-
-    @Before("execution(* net.guides.springboot2.springaop.service.EmployeeService.createEmployee(..))")
-    public void logBeforeAddEmployee(JoinPoint joinPoint) {
-  LOGGER.debug("****LoggingAspect.logBeforeCreateEmployee() : " + joinPoint.getSignature().getName());
-    }
- 
-    @After("execution(* net.guides.springboot2.springaop.service.EmployeeService.*(..))")
-    public void logAfterAllMethods(JoinPoint joinPoint) 
-    {
-  LOGGER.debug("****LoggingAspect.logAfterAllMethods() : " + joinPoint.getSignature().getName());
-    }
-    
-    @After("execution(* net.guides.springboot2.springaop.service.EmployeeService.getEmployeeById(..))")
-    public void logAfterGetEmployee(JoinPoint joinPoint) 
-    {
-     LOGGER.debug("****LoggingAspect.logAfterGetEmployee() : " + joinPoint.getSignature().getName());
-    }
-    
-    @After("execution(* net.guides.springboot2.springaop.service.EmployeeService.addEmployee(..))")
-    public void logAfterAddEmployee(JoinPoint joinPoint) 
-    {
-     LOGGER.debug("****LoggingAspect.logAfterCreateEmployee() : " + joinPoint.getSignature().getName());
-    }
-}
-Application.java
-Now test the AOP configuration and other stuff with the main() method:
-package net.guides.springboot2.springaop;
-
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ApplicationContext;
-
-import net.guides.springboot2.springaop.model.Employee;
-import net.guides.springboot2.springaop.service.EmployeeService;
-
-@SpringBootApplication
-public class Application {
- 
- public static void main(String[] args) {
-  ApplicationContext applicationContext =  SpringApplication.run(Application.class, args);
-  EmployeeService employeeService = applicationContext.getBean(EmployeeService.class);
-  employeeService.addEmployee(new Employee(100L, "ramesh", "fadatare", "ramesh@gmail.com"));
-  employeeService.getEmployeeById(100L);
-  employeeService.getAllEmployees();
- }
-}
-
-
-
-Understanding AOP Concepts and Terminology with Above Example
-Let us now define some central AOP concepts and terminology and relate them to the above example.
-Aspect
-Aspect is the modularization of a concern that cuts across multiple classes. Transaction management is a good example of a crosscutting concern in enterprise Java applications. In Spring AOP, aspects are implemented by using regular classes (the schema-based approach) or regular classes annotated with the @Aspect annotation (the @AspectJ style).
-In our example, we have created a LoggingAspect using a Java-based configuration. To create an aspect, you need to apply @Aspect annotation on the Spring component:
-@Aspect
-@Component
-public class LoggingAspect {
-    ...
-}
-Join point
-Join point is a point during the execution of a program, such as the execution of a method or the handling of an exception. In Spring AOP, a join point always represents a method execution.
-In our example, all the methods defined inside EmployeeService are joint points.
-Advice
-Advice is an action taken by an aspect at a particular join point. 
-In our example, logBeforeAllMethods(), logBeforeGetEmployee(), logBeforeAddEmployee(), logAfterAllMethods(), logAfterGetEmployee(), and logAfterAddEmployee() methods are advices.
-Spring AOP includes the following types of advice.
-Before advice: Advice that runs before a join point but that does not have the ability to prevent execution flow proceeding to the join point (unless it throws an exception).
-Understand Before advice with an example at Spring AOP AspectJ @Before Annotation
-After returning advice: Advice to be run after a join point completes normally (for example, if a method returns without throwing an exception).
-Understand After returning with an example at Spring AOP AspectJ @AfterReturning Annotation Example
-After throwing advice: Advice to be executed if a method exits by throwing an exception.
-Understand After throwing advice with an example at Spring AOP AspectJ @AfterThrowing Example
-After (finally) advice: Advice to be executed regardless of the means by which a join point exits (normal or exceptional return).
-Understand After advice with an example at Spring AOP AspectJ After Advice Example using @After Annotation
-Around advice: Advice that surrounds a join point such as a method invocation. This is the most powerful kind of advice. Around advice can perform custom behavior before and after the method invocation. It is also responsible for choosing whether to proceed to the join point or to shortcut the advised method execution by returning its own return value or throwing an exception.
-Understand Around advice with an example at Spring AOP AspectJ @Around Annotation Example
-Pointcut
-A Pointcut is a predicate that helps match Advice to be applied by an Aspect at a particular JoinPoint. The Advice is often associated with a Pointcut expression and runs at any Joinpoint matched by the Pointcut.
-In our example, the expressions passed in @Before and @After annotations are pointcuts. For example:
-
-
-
-
-@Before("execution(* net.guides.springboot2.springaop.service.EmployeeService.*(..))")
-@After("execution(* net.guides.springboot2.springaop.service.EmployeeService.*(..))")
-Target object
-An object being advised by one or more aspects. Also referred to as the “advised object”. Since Spring AOP is implemented by using runtime proxies, this object is always a proxied object.
-In our example, EmployeeService is an advised object hence it is the target object.
-AOP proxy
-An object created by the AOP framework in order to implement the aspect contracts (advise method executions and so on). In the Spring Framework, an AOP proxy is a JDK dynamic proxy or a CGLIB proxy.
-In our example, a proxy object is created when we ask for the bean reference for EmployeeService class.
-5. Enabling @AspectJ Support
-The AspectJ support can be enabled with XML or Java-based configuration. In either case, you will also need to ensure that AspectJ’s aspectjweaver.jar library is on the classpath of your application (version 1.8 or later).
-Enabling @AspectJ Support with Java Configuration
-To enable @AspectJ support with Java @Configuration, add the @EnableAspectJAutoProxy annotation, as the following example shows:
-@Configuration
-@EnableAspectJAutoProxy
-public class AppConfig {
-
-}
-Enabling @AspectJ Support with XML Configuration
-To enable @AspectJ support with XML-based configuration, use the aop:aspectj-autoproxy element, as the following example shows:
-<aop:aspectj-autoproxy/>
-6. Declaring an Aspect
-With @AspectJ support enabled, any bean defined in your application context with a class that is an @AspectJ aspect (has the @Aspect annotation) is automatically detected by Spring and used to configure Spring AOP.
-Using XML Configuration
-Below XML bean shows a regular bean definition in the application context that points to a bean class that has the @Aspect annotation:
-<bean id="myAspect" class="org.xyz.NotVeryUsefulAspect">
-    <!-- configure properties of the aspect here -->
-</bean>
-package org.xyz;
-import org.aspectj.lang.annotation.Aspect;
-@Aspect
-public class LoggingAspect {
-
-}
-
-+ aspect
-+ join point
-+ advice
-+ point cut
-+ point cut expressions
-
-
-
-
-
 
 Spring - Spring Core, Spring MVC, Spring Boot, Spring REST, Spring Boot
 
@@ -2823,6 +2497,59 @@ Spring - Spring Core, Spring MVC, Spring Boot, Spring REST, Spring Boot
 final project-2
 
 
+
+Aspect Oriented Programming
+
+    An aspect is a domain independent cross cutting concern or operation
+    that can used across our application.
+
+        Like 
+                logging
+                transaction management
+                security (authentication and authorization) ...etc
+
+    we can configuarwe the aspects to execute after or before or around a regular bussienss logic
+    by still keeping them isolated.
+
+
+    the cross-cutting concern tobe executed is called ASPECT
+    and the actual bussiness logic by reference to whcihan aspect has to exeucte is calle JOIN POINT
+    to let the ASPECT know the JOIN POIINt, the POINT CUT is used.
+
+    PointCut
+    ------------------------
+    "execution(* packageName.ClassName.methodName(..))"
+    
+    AspectJ Annotations
+    -------------------------
+    @EnableAspectJAutoProxy
+    @Aspect - Represents an aspect advice class.
+    @Before – Run before the method execution
+    @After – Run after the method returned a result
+    @AfterReturning – Run after the method returned a result, intercept the returned result as well.
+    @AfterThrowing – Run after the method throws an exception
+    @Around – Run around the method execution, combine all three advices above.
+    
+    
+    <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-aop</artifactId>
+        <version>${spring.version}</version>
+    </dependency>
+
+    <dependency>
+        <groupId>org.aspectj</groupId>
+        <artifactId>aspectjrt</artifactId>
+
+
+        <version>1.6.11</version>
+    </dependency>
+    
+    <dependency>
+        <groupId>org.aspectj</groupId>
+        <artifactId>aspectjweaver</artifactId>
+        <version>1.6.11</version>
+    </dependency>
 
 
 

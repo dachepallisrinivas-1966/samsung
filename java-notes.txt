@@ -2519,7 +2519,12 @@ front controller	→	DispatcherServlet
 
 
 
+Query String: (request parameters)
+--------------------------------------
+	url ? var-1 = value-1 & var-2 = value-2 & var-3 = value-3 ....
 
+
+@RequestParm
 
 
 

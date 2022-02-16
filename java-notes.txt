@@ -2497,7 +2497,32 @@ AspectJ Annotations
 @AfterThrowing – Run after the method throws an exception
 @Around – Run around the method execution, combine all three advices above.
     
-    
+
+
+
+16-feb-2022
+-----------------
+
+MVC	-	Model View Controller
+It is also a design patterns.
+
+
+Model		-	represent data (object)			-	it is a class
+View		-	presentation				-	jsp, thymeleaf, velocity etc.,
+Controller	-	decides the flow of an application	-	it is a class
+
+spring mvc architecture:
+
+
+front controller	→	DispatcherServlet
+
+
+
+
+
+
+
+
 
 
 

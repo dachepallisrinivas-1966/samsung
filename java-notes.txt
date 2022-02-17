@@ -2529,6 +2529,45 @@ Query String: (request parameters)
 
 
 
+								Spring Boot
+								-----------
+
+			Spring									Spring Boot
+-----------------------------------------------------------------------------------------------------------------------------------------------
+Spring is an open-source lightweight framework widely 			Spring Boot is built on top of the conventional spring framework, widely
+used to develop enterprise applications.	 			used to develop REST APIs.
+
+The most important feature of the Spring Framework is 			The most important feature of the Spring Boot is Autoconfiguration.
+dependency injection.	
+
+To run the Spring application, we need to set the server 		Spring Boot provides embedded servers such as Tomcat and Jetty etc.
+explicitly.
+
+To run the Spring application, a deployment descriptor 			There is no requirement for a deployment descriptor.
+is required.
+
+To create a Spring application, the developers write 			It reduces the lines of code.
+lots of code.
+
+It doesn’t provide support for the in-memory database.			It provides support for the in-memory database such as H2.
+
+
+
+
+Spring Boot Features
+--------------------
+1) Auto configuration
+2) Embedded Servers
+3) Health Check and Metrics
+4) opinionated dependencies (starter depdendencies)
+
+
+
+
+How do you create a Spring Boot project?
+1) using spring initialiazer (start.spring.io)
+
+
 
 
 Spring - Spring Core, Spring AOP, Spring MVC, Spring Boot, Spring REST

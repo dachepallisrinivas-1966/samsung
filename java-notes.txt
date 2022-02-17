@@ -2587,5 +2587,109 @@ Spring Data	(Spring Boot )
 	
 
 
+							Web Services
+							------------
+data exchange formats:
+-----------------------
+XML
+JSON
+
+two types of web services:
+--------------------------
+1) SOAP	(Simple Object Access Protocol)		-	only xml
+	JAX-WS
+2) REST (Representational State Transfer)	-	primarily json, xml
+	JAX-RS
+
+	Spring REST
+
+
+REST api
+------------------------------------------------------------------------------
+
+    Web Application
+        REPO <--model--> SERVICE <-model-> Controllers <-model-> VIEWS (JSP) 
+
+    Andriod Application
+        REPO <--model--> SERVICE <-model-> Controllers <-model-> VIEWS (Andriod Views) 
+
+    Windows/Linux Standalone Application
+        REPO <--model--> SERVICE <-model-> Controllers <-model-> VIEWS (Java Swing/Java AWT/.Net winforms) 
+
+
+    Using Web Service
+
+        BaackEnd (SOAP WebService)  <-----------SOAP protocol---->      UI/UX
+
+                                                                              JSP      
+                                                                              Andriod
+                                                                              Angular
+            REPO <--model--> SERVICE <-model-> Controllers   <---XML--->      ReactJS       
+                                                                              Java Swings
+                                                                              .Net Winforms
+                                                                              VueJS
+
+         BaackEnd (RESTful WebService) <-----------HTTP protocol---->    UI/UX
+
+                                                                                JSP      
+                                                                                Andriod
+                                                                                Angular
+            REPO <--model--> SERVICE <-model-> Controllers   <-JSON/XML->   	ReactJS       
+                                                                                Java Swings
+                                                                                .Net Winforms
+                                                                                VueJS
+
+
+        End Point       Url that is mapped to an action method 
+        Resource        Entity or Model on which the rest api is operated.
+
+        (+) Choose standards against documentation.
+
+            Resource is EmployeeEntity
+            Let the EndPoint be /employees
+
+            GET         /employees                      retrieval of all employees
+            GET         /employees/101                  retrieval of employee bearing id=101
+            PUT         /employees                      updation of the whole employee record
+            PATCH       /employees                      partial updation of an employee record
+            POST        /employees                      creation of a new employee record
+            DELETE      /employees/101                  deletion the employee bearing id=101
+
+        (+) Http Status Codes - can be used to communicate the status of the request.
+
+            1xx     to indicate that the request is received and is under process.
+            3xx     to indicate that the request is being redirected to a different resource
+
+            2xx     to indicate the successful completion of the requested operation
+                200     OK          sent in response to a GET request
+                201     CREATED     sent in response to a POST request
+                202     ACCEPTED    sent in response to a PUT/PATCH request
+                204     NO CONTENT  sent in response to a DELETE request
+
+            4xx     to indicate that the request could not be honored due to a client side issue
+                404     NOT FOUND   sent in response to a GET/DELETE request when the given resource is not found
+                .....
+
+            5xx    to indicate that the request could not be honored due to a server side issue
+                500     INTERNAL SERVER ERROR
+
+
+        @RestController     =       @Controller + @ResponseBody
+
+        Action in a @Controller is expected to return a viewName with or without model, the render html will
+        be the response body
+
+        Action in a @RestController is expected to return the model which becomes the response body
+
+
+
+
+	RestClient Tools:
+	-----------------
+	1) postman
+	2) insomnia
+	3) soap ui
+
+		
 
 

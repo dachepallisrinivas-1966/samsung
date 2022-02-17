@@ -2570,8 +2570,22 @@ How do you create a Spring Boot project?
 
 
 
-Spring - Spring Core, Spring AOP, Spring MVC, Spring Boot, Spring REST
+Spring - Spring Core, Spring AOP, Spring MVC, Spring Boot, Spring Data, Spring REST
 final project-2
+
+Spring
+	-	Spring JDBC
+	-	Spring ORM
+
+Spring Data	(Spring Boot )
+	-	JpaRepository	interface
+	-	CrudRepository  interface
+
+	-	Spring Data JDBC
+	-	Spring Data JPA
+
+	
+
 
 
 

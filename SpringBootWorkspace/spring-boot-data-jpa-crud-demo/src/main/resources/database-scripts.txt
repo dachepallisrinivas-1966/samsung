@@ -1,0 +1,21 @@
+CREATE TABLE sbwcd_employees
+(emp_id NUMBER(19) CONSTRAINT sbwcd_employees_pk PRIMARY KEY,
+ full_name VARCHAR2(40) CONSTRAINT sbwcd_employees_nn NOT NULL,
+ basic_salary NUMBER(19) CONSTRAINT sbwcd_employees_chk CHECK (basic_salary BETWEEN 10000 AND 50000),
+ join_date DATE,
+ dept_name VARCHAR(20),
+ mobile VARCHAR(10) CONSTRAINT sbwcd_employees_m_nn NOT NULL,
+ email VARCHAR(50) CONSTRAINT sbwcd_employees_e_nn NOT NULL
+ );
+ 
+ INSERT INTO sbwcd_employees
+ VALUES (1, 'srinivas dachepalli', 45000, '19-apr-2021', 'SALES', '9247212540', 'ds@gmail.com');
+ 
+ INSERT INTO sbwcd_employees
+ VALUES (2, 'sai pallavi nemani', 46000, '18-apr-2021', 'ACCOUNTS', '9247212541', 'spn@gmail.com');
+ 
+ INSERT INTO sbwcd_employees
+ VALUES (3, 'sahiti vadlamani', 46000, '17-apr-2021', 'SALES', '9247212542', 'sv@gmail.com');
+ 
+ COMMIT;
+ 

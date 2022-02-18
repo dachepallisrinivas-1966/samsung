@@ -1,0 +1,15 @@
+CREATE TABLE contacts
+(cid    number(6) PRIMARY KEY,
+ fnm    varchar2(50),
+ email  varchar2(100),
+ mobile varchar2(10),
+ dob    date
+);
+
+
+INSERT INTO contacts VALUES (1, 'srinivas dachepalli', 'dachepallisrinivas@gmail.com', '9247175823', '09-apr-1966');
+INSERT INTO contacts VALUES (2, 'vamsy kiran aripaka', 'vkiran@gmail.com', '9247175833', '06-jun-1985');
+INSERT INTO contacts VALUES (3, 'pallavi nemani', 'npallavi@yahoo.com', '9247175844', '23-sep-1991');
+INSERT INTO contacts VALUES (4, 'raj kiran parasa', 'prkiran@hotmail.com', '9247175855', '16-aug-1982');
+
+COMMIT;

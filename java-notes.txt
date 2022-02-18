@@ -2690,6 +2690,89 @@ REST api
 	2) insomnia
 	3) soap ui
 
+
+
+	Enter your name : [         ]  ← unm 
+	[click]		
+
+	@Controller
+
+
+	@RequestMapping("/hello")
+	public String sayHello(@RequestParam(name = "unm") String name) {
+		return "hello " + unm;
+	}
+
+
+
+	@ComponentScan(basePackages = "com.samsung")
+
+	@Component
+		@Controller
+		@Service
+		@Repository
+		@Config
+
+			i) @Bean
+				for internal view resolver
+				prefix	/WEB-INF/view/
+				suffix	jsp
+			
+
+	@RequestParm
+	@PathVariable
+
+
+
+
+	ContactManagementSystem
+	-----------------------
+	Spring Boot
+	JPA Hibernate
+	Oracle
+	HTML
+	CSS
+	Bootstrap
+
+
+	MVC Design Pattern
+	Service Locator Design Pattern
+	DAO Design Pattern
+	Builder Design Pattern
+	Factory Design Pattern
+	
+	Multi Layered Architecture
+
+
+
+	JPA is an API 	(JPA stands Java Persistence API)
+		Hibernate implementation of JPA
+			Oracle
+			MySQL
+			Post gre SQL
+			MS SQL Server
+
+		Top Link implementation of JPA
+		Eclipse Link implementation of JPA
+
+	List interface
+		ArrayList class
+		LinkedList class
+		Vector class
+
+
+storing data permanantly in a
+	file
+	database
+
+
+class Employee implements Serializable {
+	..
+	..
+}
 		
+
+
+
 
 
